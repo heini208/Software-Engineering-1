@@ -13,8 +13,8 @@ class se1_223Test {
 	
 	@BeforeEach
 	void setUp() throws Exception {
-		obj0 = new Sort(depend0);
-		obj1 = new Sort(depend1);
+		obj0 = new se1_223Entwicklung(depend0);
+		obj1 = new se1_223Entwicklung(depend1);
 	}
 	
 	@DisplayName("Überprüft ob Sequence korrekt ist")
