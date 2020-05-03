@@ -11,7 +11,7 @@ public class theorycrafting {
 			if (Abhäng [i][0] == gelesen [k]){
 		 	
 			break;
-				}else {
+				}else if k == sequence.length {
 				return false;
 				}
 			}
