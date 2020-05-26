@@ -5,6 +5,10 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.List;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -20,6 +24,7 @@ public class DemoServlet extends HttpServlet {
     public DemoServlet() {
    
     }
+    
     private ServletContext getApplication(){
     	return getServletConfig().getServletContext();
     	}
@@ -62,6 +67,35 @@ public class DemoServlet extends HttpServlet {
     	if(tsum == null) tsum = 0.0f;
     	return tsum;
     }
+    
+    private List<CarIF> cars(String[] params){
+    	ServletContext application = getApplication();
+    	List<CarIF> cars = (ArrayList<CarIF>)application.getAttribute("cars");
+    	if ( cars== null ) {
+    	cars =new ArrayList<CarIF>();
+    	}
+    	
+    	String ticket = params[5];
+    	Iterator<CarIF> i = cars.listIterator();
+    	while(i.hasNext()) {
+    		if((i.next().getTicket()).equals(ticket)) {
+    			i.remove();
+    		}
+    		
+    	}
+    	
+    	
+    	
+    	cars.add(new Car(params));
+    	
+    	getApplication().setAttribute("cars", cars );
+    	return cars;
+    }
+    
+    private List<CarIF> getCars(){
+    	ServletContext application = getApplication();
+    	return  (List<CarIF>)application.getAttribute("cars");
+    }
 
 
     	private static String getBody(HttpServletRequest request) throws IOException {
@@ -89,7 +123,9 @@ public class DemoServlet extends HttpServlet {
 
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		 String[] requestParamString = request.getQueryString().split("=");
+		 
+		
+		String[] requestParamString = request.getQueryString().split("=");
 		 String command = requestParamString[0];
 		 String param = requestParamString[1];
 		if ( "cmd".equals( command ) && "sum".equals( param ) ){
@@ -127,7 +163,33 @@ public class DemoServlet extends HttpServlet {
 			PrintWriter out = response.getWriter();
 			out.println( count );
 			System.out.println( "count = " + count );
-		 	} else {
+		 	}
+		else if ( "cmd".equals( command ) && "chart".equals( param ) ){
+			
+			if ( getCars()!= null) {
+			
+			
+			String carnums = "\"Car_" + getCars().get(0).getcarnum()+"\"";
+			String carvalues = ""+(getCars().get(0).getDuration())/1000;
+			Iterator<CarIF> iterator = getCars().listIterator(1);
+			
+			while(iterator.hasNext()){
+	    		CarIF c = iterator.next();
+	    		System.out.println(carnums);
+	    		
+	    		carnums += ",\"Car_" + c.getcarnum()+"\"";
+	    		carvalues += ","+ c.getDuration()/1000;
+	    	}
+	    	
+			
+			String root = "{\"data\":[{\"x\":["+ carnums +"],\"y\":["+carvalues+"],\"type\":\"bar\"}]}";
+			response.setContentType("text/html");
+			PrintWriter out = response.getWriter();
+			out.println(root);
+			}
+			
+		 	}
+		else {
 		 		System.out.println( "Invalid Command: " + request.getQueryString() );
 		 	}
 		
@@ -140,10 +202,18 @@ public class DemoServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		
-		String body = getBody( request ); System.out.println( body );
+		String body = getBody( request );
+		System.out.println( body );
 		String[] params = body.split(",");
 		String event = params[0];
+		if( event.equals("enter") ){
+			
+		}
+		
 		if( event.equals("leave") ){
+		System.out.println(cars(params).toString());
+		
+		
 			 
 		Float avg = getAverage();
 		Float tavg = getTAverage();
