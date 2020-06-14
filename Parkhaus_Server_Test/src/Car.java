@@ -10,7 +10,7 @@ public class Car implements CarIF {
 	private long startTime;
 	private long leaveTime;
 	private int carnum;
-	private int paid;
+	private double paid;
 	private String ticket;
 	private int space;
 	
@@ -35,10 +35,10 @@ public class Car implements CarIF {
 	public void setLeaveTime(long leaveTime) {
 		this.leaveTime = leaveTime;
 	}
-	public int getPaid() {
+	public double getPaid() {
 		return paid;
 	}
-	public void setPaid(int paid) {
+	public void setPaid(double paid) {
 		this.paid = paid;
 	}
 	public String getTicket() {
@@ -58,7 +58,7 @@ public class Car implements CarIF {
 		if (!params[3].equals("_")) {
 			duration = Double.parseDouble(params[3]);
 			 leaveTime = Long.parseLong(params[2]) + Long.parseLong(params[3]);
-			 paid = Integer.parseInt(params[4]);
+			 paid = Double.parseDouble(params[4]);
 		}
 		 
 		 
@@ -96,11 +96,11 @@ public class Car implements CarIF {
 		
 		
 			for(int j = 0 ; j<cars.size();j++) {
-				stats[0][j] = Double.toString(cars.get(j).getDuration());
+				stats[0][j] = Double.toString(cars.get(j).getDuration()/1000);
 				stats[1][j] = Long.toString(cars.get(j).getStartTime());
 				stats[2][j] = Long.toString(cars.get(j).getLeaveTime());
 				stats[3][j] = "c" + Integer.toString(cars.get(j).getcarnum());
-				stats[4][j] = Integer.toString(cars.get(j).getPaid());
+				stats[4][j] = Double.toString(cars.get(j).getPaid()/100);
 				stats[5][j] = cars.get(j).getTicket();
 				stats[6][j] = Integer.toString(cars.get(j).getSpace());
 				

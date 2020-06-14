@@ -37,7 +37,7 @@ class BarChartBuilderTest {
 		
 		String[][] TestArray = {{"1","8","6","4"},{"3","10","2","4"},{"5","10","2","4"},{"4","10","2","4"}};
 		double[][] TestArray2 = {{1,8,6,4},{3,10,2,4},{5,10,2,4},{4,10,2,4}};
-		System.out.println(BarChartBuilder.BuildBarChart(TestArray[0],new double[][]  {TestArray2[0]},TestArray[2]));
+		System.out.println(BarChartBuilder.BuildBarChart(TestArray[0],new String[][] {TestArray[0]},TestArray[2]));
 			
 		}
 		

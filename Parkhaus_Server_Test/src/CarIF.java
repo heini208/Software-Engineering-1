@@ -5,8 +5,8 @@ public interface CarIF {
 	public void setStartTime(long startTime) ;
 	public long getLeaveTime() ;
 	public void setLeaveTime(long leaveTime) ;
-	public int getPaid() ;
-	public void setPaid(int paid) ;
+	public double getPaid() ;
+	public void setPaid(double paid) ;
 	public String getTicket() ;
 	public void setTicket(String ticket);
 	public int getSpace() ;
