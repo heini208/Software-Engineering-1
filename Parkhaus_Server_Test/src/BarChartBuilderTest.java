@@ -13,33 +13,20 @@ class BarChartBuilderTest {
 	@Test
 	void test() {
 		
-//		if ( getCars()!= null) {
-//
-//
-//			String carnums = "\"Car_" + getCars().get(0).getcarnum()+"\"";
-//			String carvalues = ""+(getCars().get(0).getDuration())/1000;
-//			Iterator<CarIF> iterator = getCars().listIterator(1);
-//
-//			while(iterator.hasNext()){
-//				CarIF c = iterator.next();
-//				System.out.println(carnums);
-//
-//				carnums += ",\"Car_" + c.getcarnum()+"\"";
-//				carvalues += ","+ c.getDuration()/1000;
-//			}
-//
-//
-//			String root = "{\"data\":[{\"x\":["+ carnums +"],\"y\":["+carvalues+"],\"type\":\"bar\"}]}";
-//			response.setContentType("text/html");
-//			PrintWriter out = response.getWriter();
-//			out.println(root);
-//			
 		
-		String[][] TestArray = {{"1","8","6","4"},{"3","10","2","4"},{"5","10","2","4"},{"4","10","2","4"}};
-		double[][] TestArray2 = {{1,8,6,4},{3,10,2,4},{5,10,2,4},{4,10,2,4}};
-		System.out.println(BarChartBuilder.BuildBarChart(TestArray[0],new String[][] {TestArray[0]},TestArray[2]));
-			
-		}
+		String[][] TestArray = {{"c1","c2","c3","c4"},{"15","10","11","18"},{"Duration"},};
+		String TestString = "{\"data\":[{\"x\":[\"c1\",\"c2\",\"c3\",\"c4\"],\"name\":\"Duration\",\"y\":[\"15\",\"10\",\"11\",\"18\"],\"type\":\"bar\"}]}";
+		assertEquals(TestString,BarChartBuilder.BuildBarChart(TestArray[0],new String[][] {TestArray[1]},TestArray[2]));
+		
+		String[][] TestArray2 = {{"c1","c2","c3","c4"},{"77","10","100","18"},{"77","10","100","18"},{"Duration","Duration 2"},};
+		String TestString2 = "{\"data\":[{\"x\":[\"c1\",\"c2\",\"c3\",\"c4\"],\"name\":\"Duration\",\"y\":[\"77\",\"10\",\"100\",\"18\"],\"type\":\"bar\"},{\"x\":[\"c1\",\"c2\",\"c3\",\"c4\"],\"name\":\"Duration 2\",\"y\":[\"77\",\"10\",\"100\",\"18\"],\"type\":\"bar\"}]}";
+		assertEquals(TestString2,BarChartBuilder.BuildBarChart(TestArray2[0],new String[][] {TestArray2[1],TestArray2[2]},TestArray2[3]));
+		
+		String TestString3 = "{\"data\":[{\"x\":[\"c1\",\"c2\",\"c3\",\"c4\"],\"name\":\"Duration\",\"y\":[\"77\",\"10\",\"100\",\"18\"],\"type\":\"bar\"},{\"x\":[\"c1\",\"c2\",\"c3\",\"c4\"],\"y\":[\"77\",\"10\",\"100\",\"18\"],\"type\":\"bar\"}]}" ;
+		assertEquals(TestString3,BarChartBuilder.BuildBarChart(TestArray2[0],new String[][] {TestArray2[1],TestArray2[2]},TestArray[2]));
+		
+		
+	}
 		
 		
 		

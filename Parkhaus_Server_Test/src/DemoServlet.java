@@ -159,9 +159,7 @@ public class DemoServlet extends HttpServlet {
 			
 			response.setContentType("text/html");
 			PrintWriter out = response.getWriter();
-			//double[] stats0 = Arrays.stream(stats[0]).mapToDouble(Double::parseDouble).toArray();
-			//double[] stats4 = Arrays.stream(stats[4]).mapToDouble(Double::parseDouble).toArray();
-			String ausgabe = BarChartBuilder.BuildBarChart(stats[3], new String[][]  {stats[0], stats[4]}, new String[] {"duration","paid"});
+			String ausgabe = BarChartBuilder.BuildBarChart(stats[3], new String[][]  {stats[0], stats[4]}, new String[] {"duration"});
 				out.println(ausgabe);
 					
 			}
