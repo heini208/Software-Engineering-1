@@ -85,5 +85,8 @@ public class Statistiken{
 	public void aktualisieren(CarIF c) {
 		stats.add(c.carToString());
 	}
+	public void update() {
+		
+	}
 	
 }

@@ -2,15 +2,15 @@ import java.util.*;
 import java.util.function.Predicate;
 import java.util.stream.Stream;
 
-public class Parkhaus implements ParkhausIF {
+public class Parkhaus extends ParkhausPublisher implements ParkhausIF  {
 	private List<CarIF> cars;
 	private boolean isFull;
 	private float currentTime;
 	private int numCars;
 	private float price;
 	private Statistiken stats;
-
 	
+
 	
 	
 	//Constructors
@@ -55,6 +55,24 @@ public class Parkhaus implements ParkhausIF {
 	
 	
 	//TODO enter and leaving methods
+	
+	public Parkhaus leave(String[] params) throws Exception {
+		if ( getParked() == 0 ) {
+			throw new Exception("Parkhaus_is_Empty");	
+		}
+		int index = 99999;
+		for(CarIF c : cars) {
+			if(c.getTicket().equals(params[5])) {
+				index= cars.indexOf(c);
+			}
+		}
+		
+		stats.aktualisieren(new Car( params));
+		update();
+		
+		cars.remove(index);
+		return this;
+	}
 	
 	public Parkhaus enter(String[] params){
 		

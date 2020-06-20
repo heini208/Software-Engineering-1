@@ -50,6 +50,7 @@ public class DemoServlet extends HttpServlet {
 		return count;
 	}
 
+	
 
 
 	private Float getTAverage() {
@@ -66,21 +67,27 @@ public class DemoServlet extends HttpServlet {
 		if(tsum == null) tsum = 0.0f;
 		return tsum;
 	}
-
-	// Auto wird hinzugefuegt an Parkhaus
-	private Parkhaus addToStats(String[] params){
-		Parkhaus parkhaus = getParkhaus();
-		parkhaus.getStats().aktualisieren(new Car(params));
-		getApplication().setAttribute("parkhaus", parkhaus);
-		return parkhaus;
+	
+	private List<ChartIF> getCharts(){
+		ServletContext application = getApplication();
+		List<ChartIF> charts = ((ParkhausPublisher) application.getAttribute("parkhaus")).getChart();
+		if (charts == null) {
+			
+			charts = new ArrayList<ChartIF>();
+		}
+		return charts;
+		
 	}
 
 	// returns Parkhaus saved in ServletContext
 	private Parkhaus getParkhaus(){
 		ServletContext application = getApplication();
 		Parkhaus parkhaus =  (Parkhaus)application.getAttribute("parkhaus");
-		if(parkhaus == null)
+		if(parkhaus == null) {
 			parkhaus = new Parkhaus();
+			new PaidDurationChart(parkhaus);
+			new TagesEinnahmen(parkhaus);
+		}
 		return parkhaus;
 	}
 
@@ -152,11 +159,15 @@ public class DemoServlet extends HttpServlet {
 			System.out.println( "count = " + count );
 		}
 		else if ( "cmd".equals( command ) && "chart".equals( param ) ){
-
+			String ausgabe = "";
 			if ( getParkhaus()!= null) {
-
-				Statistiken stats = getParkhaus().getStats();
-				String ausgabe = BarChartBuilder.BuildBarChart(stats.toStringArray(0), new String[][] {stats.toStringArray(3),stats.toStringArray(4)}, new String[] {"duration", "paid"});
+				List<ChartIF> charts = getCharts();
+				for ( ChartIF chart : charts) {
+					if (chart instanceof PaidDurationChart) {
+						ausgabe = chart.buildChart();
+					}
+				}
+				System.out.println(ausgabe);
 				response.setContentType("text/html");
 				PrintWriter out = response.getWriter();
 				out.println(ausgabe);
@@ -185,7 +196,15 @@ public class DemoServlet extends HttpServlet {
 
 		if( event.equals("leave") ){
 			
-			System.out.println(addToStats(params).toString());
+			Parkhaus parkhaus = getParkhaus();
+			try {
+				parkhaus.leave(params);
+			} catch (Exception e) {
+				System.out.println(e);
+			}
+			getApplication().setAttribute("parkhaus", parkhaus);
+			
+			
 			
 			
 
