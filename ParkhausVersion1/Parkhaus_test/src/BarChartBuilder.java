@@ -2,7 +2,7 @@ import org.json.*;
 
 public class BarChartBuilder {
 
-	//Barchart
+	//Barcharts
 	
 	
 	public static String BuildBarChart (String[] x , String[][] y , String[] names) {
