@@ -13,9 +13,13 @@ class TageseinnahmenTest {
 	void test() {
 		Parkhaus p = new Parkhaus();
 		List<String[]> stats = new ArrayList<String[]>();
-		String[] car1 = {"","","1592672800190","","200","","",""};
+		String[] reiter = {"carnum","startTime", "leaveTime","duration",
+				"paid","ticket", "space", "type"
+				};
+		stats.add(reiter);
+		String[] car1 = {"","","1592672800190","","0.3","","",""};
 		stats.add(car1);
-		String[] car2 = {"","","1592672800290","","200","","",""};
+		String[] car2 = {"","","1592672800290","","0.5","","",""};
 		stats.add(car2);
 		String[] car3 = {"","","1692672800190","","200","","",""};
 		stats.add(car3);

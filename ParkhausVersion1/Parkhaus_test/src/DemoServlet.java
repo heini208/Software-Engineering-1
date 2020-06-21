@@ -204,9 +204,6 @@ public class DemoServlet extends HttpServlet {
 			}
 			getApplication().setAttribute("parkhaus", parkhaus);
 			
-			
-			
-			
 
 			Float avg = getAverage();
 			Float tavg = getTAverage();

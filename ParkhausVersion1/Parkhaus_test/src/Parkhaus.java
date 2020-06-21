@@ -51,10 +51,7 @@ public class Parkhaus extends ParkhausPublisher implements ParkhausIF  {
 	}
 	//set getter end
 	
-	
-	
-	
-	//TODO enter and leaving methods
+
 	
 	public Parkhaus leave(String[] params) throws Exception {
 		if ( getParked() == 0 ) {
@@ -64,6 +61,7 @@ public class Parkhaus extends ParkhausPublisher implements ParkhausIF  {
 		for(CarIF c : cars) {
 			if(c.getTicket().equals(params[5])) {
 				index= cars.indexOf(c);
+				
 			}
 		}
 		
@@ -73,6 +71,7 @@ public class Parkhaus extends ParkhausPublisher implements ParkhausIF  {
 		cars.remove(index);
 		return this;
 	}
+	
 	
 	public Parkhaus enter(String[] params){
 		

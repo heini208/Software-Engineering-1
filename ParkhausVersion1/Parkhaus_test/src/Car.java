@@ -76,45 +76,7 @@ public class Car implements CarIF {
 		 space = Integer.parseInt(params[7]);
 		 carnum = Integer.parseInt(params[1]);
 	}
-	
-	public static List<CarIF> addcars(String[] params , List<CarIF> cars){
-		
-		if ( cars== null ) {
-			cars =new ArrayList<CarIF>();
-		}
 
-		String ticket = params[5];
-		Iterator<CarIF> i = cars.listIterator();
-		while(i.hasNext()) {
-			if((i.next().getTicket()).equals(ticket)) {
-				i.remove();
-			}
-
-		}
-
-		cars.add(new Car(params));
-
-		return cars;
-	}
-	
-
-	/*
-	public static String[][] carStats (List<CarIF> cars ){
-		String[][] stats = new String[7][cars.size()];
-		
-			for(int j = 0 ; j<cars.size();j++) {
-				stats[0][j] = Double.toString(cars.get(j).getDuration()/1000);
-				stats[1][j] = Long.toString(cars.get(j).getStartTime());
-				stats[2][j] = Long.toString(cars.get(j).getLeaveTime());
-				stats[3][j] = "c" + Integer.toString(cars.get(j).getcarnum());
-				stats[4][j] = Double.toString(cars.get(j).getPaid()/100);
-				stats[5][j] = cars.get(j).getTicket();
-				stats[6][j] = Integer.toString(cars.get(j).getSpace());
-			}
-		
-		return stats;
-	}*/
-	
 	public String[] carToString() {
 		String[] carValues = new String[8];
 		carValues[0] = "C"+ getcarnum();

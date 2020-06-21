@@ -7,15 +7,18 @@ import java.util.stream.Collectors;
 
 public class TagesEinnahmen implements ChartIF {
 	private Parkhaus p;
-	private List<Integer> einnahmen = new ArrayList<Integer>();;
+	private List<Double> einnahmen = new ArrayList<Double>();;
 	private List<Date> tage = new ArrayList<Date>();
 	private Statistiken stats;
 	private Date daydate;
 	private int index = 0;
 	SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
-	public List<Integer> getEinnahmen(){
+	
+	
+	public List<Double> getEinnahmen(){
 		return einnahmen;
 	}
+	
 	public List<Date> getTage(){
 		return tage;
 	}
@@ -25,9 +28,6 @@ public class TagesEinnahmen implements ChartIF {
 		stats = p.getStats();
 		p.addChart(this);
 		this.update();
-		
-		
-		
 	}
 	
 	@Override
@@ -38,32 +38,28 @@ public class TagesEinnahmen implements ChartIF {
 			Iterator<String> si = new StatsIterator(stats,2);
 			Iterator<String> sj = new StatsIterator(stats,4);
 			
-			while ( si.hasNext()) {
+			while (si.hasNext()) {
 				daydate = new Date( Long.parseLong(si.next()));
-				
 				
 				if (index == 0 & tage.size() ==0) {
 					tage.add(daydate);
-					
-					einnahmen.add(Integer.parseInt(sj.next()));
-					
+					einnahmen.add(Double.valueOf(sj.next()));
 					
 				}else if(!(sdf.format(tage.get(index))).equals(sdf.format(daydate))) {
 					
 					tage.add(daydate);
-					einnahmen.add(Integer.parseInt(sj.next()));
+					einnahmen.add(Double.valueOf(sj.next()));
 					index++;
 					continue;
-				}else {
-				int einnahme = einnahmen.get(index);
-				einnahme += Integer.parseInt(sj.next());
-				einnahmen.set(index, einnahme);
-				einnahme = 0;
+					
+				} else {
+					double einnahme = einnahmen.get(index);
+					einnahme += Double.valueOf(sj.next());
+					einnahmen.set(index, einnahme);
+					einnahme = 0;
 				}
 				
 			}
-					
-			
 	}
 
 	@Override

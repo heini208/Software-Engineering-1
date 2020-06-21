@@ -7,6 +7,7 @@ public abstract class ParkhausPublisher {
 		public List<ChartIF> getChart(){
 			return chart;
 		}
+		
 		public void update() {
 			for(int i = 0;i<chart.size(); i++) {
 				chart.get(i).update();
@@ -16,6 +17,7 @@ public abstract class ParkhausPublisher {
 		public void addChart(ChartIF chart) {
 			this.chart.add(chart);			
 		}
+		
 		public void removeStats(ChartIF chart) {
 			if (this.chart.contains(chart)) {
 				this.chart.remove(chart);

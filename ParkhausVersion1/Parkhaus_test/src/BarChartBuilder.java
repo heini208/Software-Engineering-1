@@ -3,8 +3,6 @@ import org.json.*;
 public class BarChartBuilder {
 
 	//Barcharts
-	
-	
 	public static String BuildBarChart (String[] x , String[][] y , String[] names) {
 
 		JSONObject root = new JSONObject ();

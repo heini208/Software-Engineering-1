@@ -10,7 +10,6 @@ public class StatsIterator implements Iterator<String>{
 	
 	
 	public StatsIterator(Statistiken stats, int start) {
-		
 		flatstats = stats.getStatistik().stream().flatMap(Arrays::stream).toArray(String[]::new);
 		size = flatstats.length;
 		index = (start%8)+8;

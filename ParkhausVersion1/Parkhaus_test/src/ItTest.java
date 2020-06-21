@@ -10,17 +10,21 @@ class ItTest {
 	@Test
 	void test() {
 		Statistiken s = new Statistiken(new Parkhaus());
-		String[] reiter = {"carnum","startTime", "leaveTime","duration",
+		String[] reiter = {"carnum","startTime", "0.2","duration",
+				"paid","ticket", "space", "type"
+				};
+		String[] reiter2 = {"carnum","startTime", "leaveTime","duration",
 				"paid","ticket", "space", "type"
 				};
 		List<String[]> stats = new ArrayList<String[]>();
 		stats.add(reiter);
 		stats.add(reiter);
+		stats.add(reiter2);
 		s.setStatistik(stats);
 		StatsIterator it = new StatsIterator(s,2);
 		
 		
-		assertEquals("leaveTime", it.next());
+		assertEquals("0.2", it.next());
 		assertEquals("leaveTime", it.next());
 		assertEquals(false, it.hasNext());
 		

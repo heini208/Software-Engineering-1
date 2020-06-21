@@ -27,8 +27,6 @@ public class PaidDurationChart implements ChartIF {
 
 	@Override
 	public String buildChart() {
-		
-			
 		String ausgabe = BarChartBuilder.BuildBarChart(stats.toStringArray(0), new String[][] {duration,paid}, new String[] {"duration", "paid"});
 		return ausgabe;
 	}
