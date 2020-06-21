@@ -3,9 +3,9 @@ import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class TagesEinnahmen extends EinnahmenProX implements ChartIF {
-
-	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+public class WochenEinnahmen extends EinnahmenProX implements ChartIF {
+ 
+	SimpleDateFormat sdf = new SimpleDateFormat("YYYY-'W'ww");
 	
 	
 	public List<Double> getEinnahmen(){
@@ -16,14 +16,14 @@ public class TagesEinnahmen extends EinnahmenProX implements ChartIF {
 		return tage;
 	}
 	
-	public TagesEinnahmen(Parkhaus p) {
+	public WochenEinnahmen(Parkhaus p) {
 		this.p = p;
-		stats = spezifizieren();
+		stats = p.getStats();
 		p.addChart(this);
 		this.update();
 	}
-
 	
+
 	@Override
 	public String buildChart() {
 		
@@ -35,7 +35,7 @@ public class TagesEinnahmen extends EinnahmenProX implements ChartIF {
 		String[] days = new String[tage.size()];
 		days= tage.toArray(days);
 		
-		return BarChartBuilder.BuildBarChart(days, new String[][] {einnahmenarr}, new String[] {"Tageseinnahmen"});
+		return BarChartBuilder.BuildBarChart(days, new String[][] {einnahmenarr}, new String[] {"Wocheneinnahmen"});
 		
 	}
 
@@ -43,9 +43,10 @@ public class TagesEinnahmen extends EinnahmenProX implements ChartIF {
 	protected Statistiken spezifizieren() {
 		return p.getStats();
 	}
-
+	
 	@Override
 	protected String formatDate(String data) {
 		return sdf.format(new Date( Long.parseLong(data)));
 	}
+
 }

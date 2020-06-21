@@ -70,7 +70,7 @@ public class DemoServlet extends HttpServlet {
 	
 	private List<ChartIF> getCharts(){
 		ServletContext application = getApplication();
-		List<ChartIF> charts = ((ParkhausPublisher) application.getAttribute("parkhaus")).getChart();
+		List<ChartIF> charts = ((ControllerIF) application.getAttribute("controllerParkhausViews")).getParkhaus().getChart();
 		if (charts == null) {
 			
 			charts = new ArrayList<ChartIF>();
@@ -80,15 +80,14 @@ public class DemoServlet extends HttpServlet {
 	}
 
 	// returns Parkhaus saved in ServletContext
-	private Parkhaus getParkhaus(){
+	private ControllerIF getParkhaus(){
 		ServletContext application = getApplication();
-		Parkhaus parkhaus =  (Parkhaus)application.getAttribute("parkhaus");
-		if(parkhaus == null) {
-			parkhaus = new Parkhaus();
-			new PaidDurationChart(parkhaus);
-			new TagesEinnahmen(parkhaus);
+		ControllerIF controllerParkhaus =  (ControllerIF)application.getAttribute("controllerParkhausViews");
+		if(controllerParkhaus == null) {
+			controllerParkhaus = new ControllerParkhausViews();
+			
 		}
-		return parkhaus;
+		return controllerParkhaus;
 	}
 
 
@@ -189,20 +188,20 @@ public class DemoServlet extends HttpServlet {
 		String[] params = body.split(",");
 		String event = params[0];
 		if( event.equals("enter") ){
-			Parkhaus parkhaus = getParkhaus();
-			parkhaus.enter(params);
-			getApplication().setAttribute("parkhaus", parkhaus);
+			ControllerIF controllerParkhaus = getParkhaus();
+			controllerParkhaus.enter(params);
+			getApplication().setAttribute("controllerParkhausViews", controllerParkhaus);
 		}
 
 		if( event.equals("leave") ){
 			
-			Parkhaus parkhaus = getParkhaus();
+			ControllerIF controllerParkhaus = getParkhaus();
 			try {
-				parkhaus.leave(params);
+				controllerParkhaus.leave(params);
 			} catch (Exception e) {
 				System.out.println(e);
 			}
-			getApplication().setAttribute("parkhaus", parkhaus);
+			getApplication().setAttribute("controllerParkhausViews", controllerParkhaus);
 			
 
 			Float avg = getAverage();

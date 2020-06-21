@@ -5,7 +5,7 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-class TageseinnahmenTest {
+class WochenEinnahmenTest {
 
 	@Test
 	void test() {
@@ -15,30 +15,31 @@ class TageseinnahmenTest {
 				"paid","ticket", "space", "type"
 				};
 		stats.add(reiter);
-		String[] car1 = {"","","1592672800190","","0.3","","",""};
+		String[] car1 = {"","","604800000","","123","","",""};
 		stats.add(car1);
-		String[] car2 = {"","","1592672800290","","0.5","","",""};
+		String[] car2 = {"","","800000000","","456","","",""};
 		stats.add(car2);
-		String[] car3 = {"","","1692672800190","","200","","",""};
+		String[] car3 = {"","","1300000000","","200","","",""};
 		stats.add(car3);
-		String[] car4 = {"","","1692672800290","","200","","",""};
+		String[] car4 = {"","","1350000000","","200","","",""};
 		stats.add(car4);
-		String[] car5 = {"","","1692672800300","","200","","",""};
+		String[] car5 = {"","","1380400000","","200","","",""};
 		stats.add(car5);
 		p.getStats().setStatistik(stats);
-		TagesEinnahmen t = new TagesEinnahmen(p);
+		WochenEinnahmen t = new WochenEinnahmen(p);
 		List<Double> testArray = new ArrayList<Double>();
-		testArray.add(0.8);
+		testArray.add(579.0);
 		testArray.add(600.0);
-		
+
 		List<String> testDate = new ArrayList<String>();
-		testDate.add("2020-06-20");
-		testDate.add("2023-08-22");
+		testDate.add("1970-W02");
+		testDate.add("1970-W03");
 		
-		assertEquals(testDate.toString(),t.getTage().toString() );
+		
+		assertEquals(testDate.toString(),t.getTage().toString());
 		assertEquals(testArray.toString(),t.getEinnahmen().toString());
 		
-		String testChart = "{\"data\":[{\"x\":[\"2020-06-20\",\"2023-08-22\"],\"name\":\"Tageseinnahmen\",\"y\":[\"0.8\",\"600.0\"],\"type\":\"bar\"}]}";
+		String testChart = "{\"data\":[{\"x\":[\"1970-W02\",\"1970-W03\"],\"name\":\"Wocheneinnahmen\",\"y\":[\"579.0\",\"600.0\"],\"type\":\"bar\"}]}";
 		
 		assertEquals(testChart, t.buildChart());
 	}

@@ -4,6 +4,8 @@ import java.util.List;
 public abstract class ParkhausPublisher {
 
 		private List<ChartIF> chart= new ArrayList<ChartIF>() ;
+		
+		
 		public List<ChartIF> getChart(){
 			return chart;
 		}
@@ -18,7 +20,7 @@ public abstract class ParkhausPublisher {
 			this.chart.add(chart);			
 		}
 		
-		public void removeStats(ChartIF chart) {
+		public void removeChart(ChartIF chart) {
 			if (this.chart.contains(chart)) {
 				this.chart.remove(chart);
 			}
