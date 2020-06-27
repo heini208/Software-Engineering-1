@@ -1,8 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
+            
+    
     <wb-module deploy-name="Parkhaus_test">
+                        
+        
         <wb-resource deploy-path="/" source-path="/WebContent" tag="defaultRootSource"/>
+                        
+        
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
+                
+        <dependent-module archiveName="json-20200518.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/C:/Users/djtom/Documents/SE1/Software-Engineering-1/Parkhaus_Server_Test/WebContent/WEB-INF/lib/json-20200518.jar">
+                        
+            <dependency-type>uses</dependency-type>
+                    
+        </dependent-module>
+        <dependent-module archiveName="mimic.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/C:/Users/djtom/Documents/Mimic/mimic.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+                        
+        
         <property name="context-root" value="Parkhaus_test"/>
+                        
+        
         <property name="java-output-path" value="/Parkhaus_test/build/classes"/>
+                    
+    
     </wb-module>
+        
+
 </project-modules>

@@ -3,6 +3,7 @@ import java.util.function.Predicate;
 import java.util.stream.Stream;
 
 public class Parkhaus extends ParkhausPublisher implements ParkhausIF  {
+	
 	private List<CarIF> cars;
 	private boolean isFull;
 	private float currentTime;
@@ -27,6 +28,7 @@ public class Parkhaus extends ParkhausPublisher implements ParkhausIF  {
 		this.cars = cars;
 		stats = new Statistiken(this);
 	}
+
 	//Constructors end
 	
 	
@@ -139,4 +141,14 @@ public class Parkhaus extends ParkhausPublisher implements ParkhausIF  {
 		return test;
 	}
 
+	
+	public Parkhaus clearall() {
+		
+		this.cars=null;
+		this.currentTime=0;
+		this.isFull = false;
+		this.numCars = 0;
+		return null;
+		
+	}
 }

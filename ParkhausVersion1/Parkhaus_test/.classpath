@@ -10,15 +10,12 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/5"/>
-	<classpathentry exported="true" kind="lib" path="C:/Program Files/Apache Software Foundation/Tomcat 8.5/lib/servlet-api.jar">
+	<classpathentry kind="lib" path="C:/Users/djtom/Desktop/Software-Engineering-1-ParkhausVersion2/Software-Engineering-1-ParkhausVersion2/Parkhaus_Server_Test/WebContent/WEB-INF/lib/json-20200518.jar"/>
+	<classpathentry kind="lib" path="C:/Users/djtom/apache-tomcat-8.5.56/lib/servlet-api.jar">
 		<attributes>
 			<attribute name="javadoc_location" value="https://docs.oracle.com/javaee/7/api/"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry exported="true" kind="lib" path="C:/Users/Nemo/Documents/Uni/Semester 4/SE1/Eclipse/json-20200518.jar">
-		<attributes>
-			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
-		</attributes>
-	</classpathentry>
+	<classpathentry kind="lib" path="C:/Users/djtom/Documents/Mimic/mimic.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

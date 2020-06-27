@@ -1,4 +1,5 @@
 
+import java.awt.Desktop.Action;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -6,8 +7,10 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -19,30 +22,37 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet("/DemoServlet")
 public class DemoServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	private Map<String,CommandIF> actionMap = new HashMap<String,CommandIF>();
 
 	public DemoServlet() {
-
+		actionMap.put("sum",new CommandSum());
+		actionMap.put("avg",new Commandavg());
+		actionMap.put("count",new Commandcount());
+		actionMap.put("tavg",new Commandtavg());
+		actionMap.put("chart",new Commandchart());
+		
+		
 	}
 
-	private ServletContext getApplication(){
+	protected ServletContext getApplication(){
 		return getServletConfig().getServletContext();
 	}
 
-	private Float getPersistentSum(){
+	protected Float getPersistentSum(){
 		Float sum;
 		ServletContext application = getApplication();
 		sum = (Float)application.getAttribute("sum");
 		if ( sum == null ) sum = 0.0f;
 		return sum;
 	}
-	private Float getAverage() {
+	protected Float getAverage() {
 		Float avg;
 		ServletContext application = getApplication();
 		avg= (Float)application.getAttribute("avg");
 		if(avg == null) avg = 0.0f;
 		return avg;
 	}
-	private Integer getCount() {
+	protected Integer getCount() {
 		Integer count;
 		ServletContext application = getApplication();
 		count = (Integer) application.getAttribute("count");
@@ -53,14 +63,14 @@ public class DemoServlet extends HttpServlet {
 	
 
 
-	private Float getTAverage() {
+	protected Float getTAverage() {
 		Float tavg;
 		ServletContext application = getApplication();
 		tavg= (Float)application.getAttribute("tavg");
 		if(tavg == null) tavg = 0.0f;
 		return tavg;
 	}
-	private Float getTimeTotal() {
+	protected Float getTimeTotal() {
 		Float tsum;
 		ServletContext application = getApplication();
 		tsum= (Float)application.getAttribute("tsum");
@@ -68,7 +78,7 @@ public class DemoServlet extends HttpServlet {
 		return tsum;
 	}
 	
-	private List<ChartIF> getCharts(){
+	protected List<ChartIF> getCharts(){
 		ServletContext application = getApplication();
 		List<ChartIF> charts = ((ControllerIF) application.getAttribute("controllerParkhausViews")).getParkhaus().getChart();
 		if (charts == null) {
@@ -80,7 +90,7 @@ public class DemoServlet extends HttpServlet {
 	}
 
 	// returns Parkhaus saved in ServletContext
-	private ControllerIF getParkhaus(){
+	protected ControllerIF getParkhaus(){
 		ServletContext application = getApplication();
 		ControllerIF controllerParkhaus =  (ControllerIF)application.getAttribute("controllerParkhausViews");
 		if(controllerParkhaus == null) {
@@ -114,6 +124,7 @@ public class DemoServlet extends HttpServlet {
 		return stringBuilder.toString();
 	}
 
+	
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
@@ -121,58 +132,16 @@ public class DemoServlet extends HttpServlet {
 		String[] requestParamString = request.getQueryString().split("=");
 		String command = requestParamString[0];
 		String param = requestParamString[1];
-		if ( "cmd".equals( command ) && "sum".equals( param ) ){
-
-			// hier ist die summe
-			Float sum = getPersistentSum();
-			response.setContentType("text/html");
-			PrintWriter out = response.getWriter();
-			out.println( sum );
-			System.out.println( "sum = " + sum );
-		} 
-		else if ( "cmd".equals( command ) && "avg".equals( param ) ){
-
-
-			Float avg = getAverage();
-			response.setContentType("text/html");
-			PrintWriter out = response.getWriter();
-			out.println( avg );
-			System.out.println( "avg = " + avg );
-		} 
-		else if ( "cmd".equals( command ) && "tavg".equals( param ) ){
-
-
-			Float tavg = getTAverage();
-			response.setContentType("text/html");
-			PrintWriter out = response.getWriter();
-			out.println( tavg );
-			System.out.println( "tavg = " + tavg );
-		} 
-		else if ( "cmd".equals( command ) && "count".equals( param ) ){
-
-
-			Integer count = getCount();
-			response.setContentType("text/html");
-			PrintWriter out = response.getWriter();
-			out.println( count );
-			System.out.println( "count = " + count );
-		}
-		else if ( "cmd".equals( command ) && "chart".equals( param ) ){
-			String ausgabe = "";
-			if ( getParkhaus()!= null) {
-				List<ChartIF> charts = getCharts();
-				for ( ChartIF chart : charts) {
-					if (chart instanceof PaidDurationChart) {
-						ausgabe = chart.buildChart();
-					}
-				}
-				System.out.println(ausgabe);
-				response.setContentType("text/html");
-				PrintWriter out = response.getWriter();
-				out.println(ausgabe);
-
+		
+		
+		if(actionMap.containsKey(param)) {
+			CommandIF command1 = actionMap.get(param);
+			try {
+				command1.execute(response, this);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
-
 		}
 		else {
 			System.out.println( "Invalid Command: " + request.getQueryString() );
@@ -241,4 +210,5 @@ public class DemoServlet extends HttpServlet {
 		}
 	}
 
+	
 }
