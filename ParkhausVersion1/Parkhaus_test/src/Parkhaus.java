@@ -67,7 +67,10 @@ public class Parkhaus extends ParkhausPublisher implements ParkhausIF  {
 			}
 		}
 		
-		stats.aktualisieren(new Car( params));
+		Car currentcar = new Car(params);
+		currentcar.setPaid(currentcar.getPaid()*Fahrzeugtyp.getInstance(currentcar.getType()).getMultiplicator());
+		
+		stats.aktualisieren(currentcar);
 		update();
 		
 		cars.remove(index);
