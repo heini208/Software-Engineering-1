@@ -12,18 +12,18 @@ class WochenEinnahmenTest {
 		Parkhaus p = new Parkhaus();
 		List<String[]> stats = new ArrayList<String[]>();
 		String[] reiter = {"carnum","startTime", "leaveTime","duration",
-				"paid","ticket", "space", "type"
+				"paid","ticket", "space","client", "type"
 				};
 		stats.add(reiter);
-		String[] car1 = {"","","604800000","","123","","",""};
+		String[] car1 = {"","","604800000","","123","","","",""};
 		stats.add(car1);
-		String[] car2 = {"","","800000000","","456","","",""};
+		String[] car2 = {"","","800000000","","456","","","",""};
 		stats.add(car2);
-		String[] car3 = {"","","1300000000","","200","","",""};
+		String[] car3 = {"","","1300000000","","200","","","",""};
 		stats.add(car3);
-		String[] car4 = {"","","1350000000","","200","","",""};
+		String[] car4 = {"","","1350000000","","200","","","",""};
 		stats.add(car4);
-		String[] car5 = {"","","1380400000","","200","","",""};
+		String[] car5 = {"","","1380400000","","200","","","",""};
 		stats.add(car5);
 		p.getStats().setStatistik(stats);
 		WochenEinnahmen t = new WochenEinnahmen(p);

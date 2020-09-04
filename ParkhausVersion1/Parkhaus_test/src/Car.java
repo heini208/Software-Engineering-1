@@ -14,6 +14,7 @@ public class Car implements CarIF {
 	private String ticket;
 	private int space;
 	private String type = "PKW";
+	private String client;
 	
 	
 	
@@ -56,6 +57,12 @@ public class Car implements CarIF {
 	public void setSpace(int space) {
 		this.space = space;
 	}
+	public String getClient() {
+		return client;
+	}
+	public void setClient() {
+		this.client = client;
+	}
 	@Override
 	public String getType() {
 		// TODO Auto-generated method stub
@@ -69,10 +76,13 @@ public class Car implements CarIF {
 		if (!params[3].equals("_")) {
 			duration = Double.parseDouble(params[3]);
 			 leaveTime = Long.parseLong(params[2]) + Long.parseLong(params[3]);
-			 paid = Double.parseDouble(params[4]);
+			
+			 //Preis
+			 paid = Double.parseDouble(params[4]) ;
+			 
 		}
 		 
-		 
+		 client = params[8];
 		 startTime = Long.parseLong(params[2]);
 		 ticket = params[5];
 		 space = Integer.parseInt(params[7]);
@@ -80,7 +90,7 @@ public class Car implements CarIF {
 	}
 
 	public String[] carToString() {
-		String[] carValues = new String[8];
+		String[] carValues = new String[9];
 		carValues[0] = "C"+ getcarnum();
 		carValues[1] = ""+ getStartTime();
 		carValues[2] = ""+ getLeaveTime();
@@ -88,7 +98,8 @@ public class Car implements CarIF {
 		carValues[4] = ""+ getPaid()/100;
 		carValues[5] = ""+ getSpace();
 		carValues[6] = getTicket();
-		carValues[7] = getType();
+		carValues[7] = getClient();
+		carValues[8] = getType();
 		return carValues;
 	}
 }

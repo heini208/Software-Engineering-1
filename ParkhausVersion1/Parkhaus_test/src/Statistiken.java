@@ -8,7 +8,7 @@ public class Statistiken{
 	Iterator<String> i;
 	Parkhaus parkhaus;
 	private String[] reiter = {"carnum","startTime", "leaveTime","duration",
-			"paid","ticket", "space","type"
+			"paid","ticket", "space","client","type"
 			};
 	List<String[]> stats = new ArrayList<String[]>();
 	
@@ -17,7 +17,7 @@ public class Statistiken{
 	public Statistiken(Parkhaus parkhaus) {
 		this.parkhaus  = parkhaus;
 		stats.add(reiter);
-		String[] carValues = new String[8];
+		String[] carValues = new String[9];
 		
 		for(CarIF cars : parkhaus.getParkhaus()) {
 			carValues = cars.carToString();

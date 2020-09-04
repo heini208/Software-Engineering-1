@@ -178,6 +178,7 @@ public class DemoServlet extends HttpServlet {
 		String[] params = body.split(",");
 		String event = params[0];
 		if( event.equals("enter") ){
+			
 			Parkhaus parkhaus = getParkhaus();
 			parkhaus.enter(params);
 			getApplication().setAttribute("parkhaus", parkhaus);

@@ -12,16 +12,16 @@ class SchabloneTest {
 		Parkhaus p = new Parkhaus();
 		List<String[]> stats = new ArrayList<String[]>();
 		String[] reiter = {"carnum","startTime", "leaveTime","duration",
-				"paid","ticket", "space", "type"
+				"paid","ticket", "space", "client","type"
 				};
 		stats.add(reiter);
-		String[] car1 = {"","","604800000","","123","","",""};
+		String[] car1 = {"","","604800000","","123","","","",""};
 		stats.add(car1);
-		String[] car2 = {"","","800000000","","456","","",""};
+		String[] car2 = {"","","800000000","","456","","","",""};
 		stats.add(car2);
-		String[] car3 = {"","","1300000000","","200","","",""};
+		String[] car3 = {"","","1300000000","","200","","","",""};
 		stats.add(car3);
-		String[] car4 = {"","","1350000000","","200","","",""};
+		String[] car4 = {"","","1350000000","","200","","","",""};
 		stats.add(car4);
 		
 		
@@ -31,18 +31,18 @@ class SchabloneTest {
 		MonatsEinnahmen me = new MonatsEinnahmen(p);
 		JahresEinnahmen je = new JahresEinnahmen(p);
 		
-		String[] car5 = {"","","1380400000","","200","","",""};
+		String[] car5 = {"","","1380400000","","200","","","",""};
 		stats.add(car5);
 		we.update();
 		te.update();
 		
-		String[] car6 = {"","",""+(1380400000+2629000000L),"","200","","",""};
+		String[] car6 = {"","",""+(1380400000+2629000000L),"","200","","","",""};
 		stats.add(car6);
 		
 		me.update();
 		me.update();
 		
-		String[] car7 = {"","",""+(1380400000+36550000000L),"","200","","",""};
+		String[] car7 = {"","",""+(1380400000+36550000000L),"","200","","","",""};
 		stats.add(car7);
 		
 		je.update();

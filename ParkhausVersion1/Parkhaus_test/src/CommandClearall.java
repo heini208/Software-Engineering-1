@@ -1,3 +1,4 @@
+import javax.servlet.http.HttpServletResponse;
 
 public class CommandClearall implements CommandIF{
 
@@ -16,6 +17,11 @@ public class CommandClearall implements CommandIF{
 	
 	public void unexecute() {
 		this.parkhaus=previousparkhaus;
+		
+	}
+	@Override
+	public void execute(HttpServletResponse response, DemoServlet servlet) throws Exception {
+		// TODO Auto-generated method stub
 		
 	}
 

@@ -6,7 +6,7 @@ class MVCTest {
 
 	@Test
 	void testController() {
-		String[] params = {"1","2345", "2345", "2345", "2345", "ticket", "2345","2345"};
+		String[] params = {"1","2345", "2345", "2345", "2345", "ticket", "2345","2345","Normal","PKW"};
 		CarIF auto = new Car(params);
 		ControllerIF controller = new ControllerParkhausViews();
 		

@@ -61,8 +61,11 @@ public class Parkhaus extends ParkhausPublisher implements ParkhausIF  {
 		}
 		int index = 99999;
 		for(CarIF c : cars) {
-			if(c.getTicket().equals(params[5])) {
+			
+			if(c.getcarnum()==Integer.parseInt(params[1])) {
+				
 				index= cars.indexOf(c);
+				
 				
 			}
 		}
@@ -74,6 +77,7 @@ public class Parkhaus extends ParkhausPublisher implements ParkhausIF  {
 		update();
 		
 		cars.remove(index);
+		System.out.println(Arrays.toString(cars.toArray()));
 		return this;
 	}
 	
@@ -92,7 +96,10 @@ public class Parkhaus extends ParkhausPublisher implements ParkhausIF  {
 			}
 
 		}
-
+		
+		// beim implementieren von Parkplatzbelegung
+		//beachten das Auto
+		//nur aufzunehmen wenn ein Parkplatz frei ist!
 		cars.add(new Car(params));
 
 		return this;

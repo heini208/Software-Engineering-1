@@ -20,7 +20,7 @@ public class CommandAufruferClearall {
 	public void compute(Parkhaus parkhausnew){
 		
 		CommandIF command = new CommandClearall(parkhausnew.clearall());
-		command.execute();
+		//command.execute();
 		
 		commands.add(command);
 		current++;

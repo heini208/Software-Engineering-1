@@ -12,13 +12,13 @@ public class StatsIterator implements Iterator<String>{
 	public StatsIterator(Statistiken stats, int start) {
 		flatstats = stats.getStatistik().stream().flatMap(Arrays::stream).toArray(String[]::new);
 		size = flatstats.length;
-		index = (start%8)+8;
+		index = (start%9)+9;
 	}
 
 	@Override
 	public String next() {
 		String next = flatstats[index];
-		index+= 8;
+		index+= 9;
 		return next;
 	}
 

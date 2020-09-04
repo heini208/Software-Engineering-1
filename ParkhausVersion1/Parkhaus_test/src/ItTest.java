@@ -11,10 +11,10 @@ class ItTest {
 	void test() {
 		Statistiken s = new Statistiken(new Parkhaus());
 		String[] reiter = {"carnum","startTime", "0.2","duration",
-				"paid","ticket", "space", "type"
+				"paid","ticket", "space", "client","type"
 				};
 		String[] reiter2 = {"carnum","startTime", "leaveTime","duration",
-				"paid","ticket", "space", "type"
+				"paid","ticket", "space","client", "type"
 				};
 		List<String[]> stats = new ArrayList<String[]>();
 		stats.add(reiter);

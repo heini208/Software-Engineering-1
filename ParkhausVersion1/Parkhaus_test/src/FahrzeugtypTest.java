@@ -3,7 +3,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
 
 class FahrzeugtypTest {
-	String[] params = {"enter","1","1593279158223","200","20","de7b7abc55d8035c556a1ab48d717d88","#75b53d","9"};
+	String[] params = {"enter","1","1593279158223","200","20","de7b7abc55d8035c556a1ab48d717d88","#75b53d","9","Normal","PKW"};
 	
 
 	Car car1 = new Car(params);
