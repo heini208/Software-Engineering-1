@@ -1,3 +1,4 @@
+import java.util.List;
 
 public class ControllerParkhausViews implements ControllerIF {
 	
@@ -17,7 +18,7 @@ public class ControllerParkhausViews implements ControllerIF {
 	}
 
 	@Override
-	public Parkhaus enter(String[] params) {
+	public int enter(String[] params) {
 		return parkhaus.enter(params);
 	}
 
@@ -27,10 +28,12 @@ public class ControllerParkhausViews implements ControllerIF {
 	}
 
 	@Override
+	public List<CarIF> getListOfCars() {
+		return this.parkhaus.getParkhaus();
+	}
+
 	public Parkhaus getParkhaus() {
 		return this.parkhaus;
 	}
-
-	
 	
 }

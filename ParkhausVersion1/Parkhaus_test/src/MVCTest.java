@@ -12,7 +12,8 @@ class MVCTest {
 		
 		//assertion tests
 		assertNotNull(controller.getParkhaus());
-		assertArrayEquals(auto.carToString(), controller.enter(params).getParkhaus().get(0).carToString());
+		controller.enter(params);
+		assertArrayEquals(auto.carToString(), controller.getListOfCars().get(0).carToString());
 		try {
 			assertEquals(0, controller.leave(params).getParked());;
 		} catch (Exception e) {

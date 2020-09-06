@@ -74,19 +74,18 @@ public class Car implements CarIF {
 
 	public Car(String[] params) {
 		if (!params[3].equals("_")) {
+			leaveTime = Long.parseLong(params[2]);
 			duration = Double.parseDouble(params[3]);
-			 leaveTime = Long.parseLong(params[2]) + Long.parseLong(params[3]);
+			paid = Double.parseDouble(params[4]) ;
 			
-			 //Preis
-			 paid = Double.parseDouble(params[4]) ;
-			 
+		} else {
+			startTime = Long.parseLong(params[2]);
 		}
-		 
-		 client = params[8];
-		 startTime = Long.parseLong(params[2]);
-		 ticket = params[5];
-		 space = Integer.parseInt(params[7]);
-		 carnum = Integer.parseInt(params[1]);
+		
+		carnum = Integer.parseInt(params[1]); 
+		ticket = params[5];
+	    space = Integer.parseInt(params[7]);
+		client = params[8];
 	}
 
 	public String[] carToString() {

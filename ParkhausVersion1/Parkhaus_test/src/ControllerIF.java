@@ -1,9 +1,10 @@
+import java.util.List;
 
 public interface ControllerIF {
 	
-	Parkhaus enter(String[] params);
+	int enter(String[] params);
 	Parkhaus leave(String[] params) throws Exception;
 	Parkhaus getParkhaus();
-	
+	List<CarIF> getListOfCars();
 	
 }

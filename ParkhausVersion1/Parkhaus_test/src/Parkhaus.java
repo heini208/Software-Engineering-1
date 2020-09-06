@@ -82,7 +82,7 @@ public class Parkhaus extends ParkhausPublisher implements ParkhausIF  {
 	}
 	
 	
-	public Parkhaus enter(String[] params){
+	public int enter(String[] params){
 		
 		if ( cars== null ) {
 			cars =new ArrayList<CarIF>();
@@ -102,7 +102,7 @@ public class Parkhaus extends ParkhausPublisher implements ParkhausIF  {
 		//nur aufzunehmen wenn ein Parkplatz frei ist!
 		cars.add(new Car(params));
 
-		return this;
+		return 2;
 	}
 	
 	

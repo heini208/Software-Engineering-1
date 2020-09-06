@@ -158,9 +158,9 @@ public class DemoServlet extends HttpServlet {
 		String event = params[0];
 		if( event.equals("enter") ){
 			ControllerIF controllerParkhaus = getParkhaus();
-			controllerParkhaus.enter(params);
+			int space = controllerParkhaus.enter(params);
 			//Parkplatz ändern ->
-			//response.getOutputStream().println(1);
+			response.getOutputStream().println(space);
 			getApplication().setAttribute("controllerParkhausViews", controllerParkhaus);
 		}
 
