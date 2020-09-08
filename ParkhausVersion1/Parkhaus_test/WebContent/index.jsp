@@ -22,9 +22,9 @@
     
  	
     extra_buttons='["sum","avg","tavg","count"]' 
- 	extra_charts='["chart"]'
+ 	extra_charts='["chart","familiechart"]'
  	
- 	client_categories='["Behinderung","Frau","Familie","Normal","Normal","Normal","Normal","Normal","Normal","Normal","Normal","Normal","Normal","Normal","Normal","Normal","Normal","Normal","Normal","Normal"]' 
+ 	client_categories='["Behinderung","Frau","Frau","Frau","Frau","Frau","Frau","Frau","Familie","Any","Any","Any","Any","Any","Any","Any","Any","Any","Any","Any"]' 
  	price_factor= '{
     "Familie": 0.8,
     "Behinderung": 0.5}'
