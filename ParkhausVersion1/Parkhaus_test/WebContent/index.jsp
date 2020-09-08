@@ -18,7 +18,7 @@
   	open_to = "24"
   	delay = "100"
   	simulation_speed =  "10"
-  	license_max = "4"
+  	license_max = "100"
     
  	
     extra_buttons='["sum","avg","tavg","count"]' 
