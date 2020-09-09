@@ -13,7 +13,7 @@ public class Car implements CarIF {
 	private double paid;
 	private String ticket;
 	private int space;
-	private String type = "PKW";
+	private String type;
 	private String client;
 	
 	
@@ -60,12 +60,11 @@ public class Car implements CarIF {
 	public String getClient() {
 		return client;
 	}
-	public void setClient() {
+	public void setClient(String client) {
 		this.client = client;
 	}
 	@Override
 	public String getType() {
-		// TODO Auto-generated method stub
 		return type;
 	}
 	public void setType(String type) {
@@ -86,6 +85,7 @@ public class Car implements CarIF {
 		ticket = params[5];
 	    space = Integer.parseInt(params[7]);
 		client = params[8];
+		type = params[9];
 	}
 
 	public String[] carToString() {

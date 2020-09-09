@@ -24,6 +24,7 @@
     extra_buttons='["sum","avg","tavg","count"]' 
  	extra_charts='["chart","familiechart"]'
  	
+ 	vehicle_types='["PKW", "PKW","PKW","PKW","PKW","PKW", "PKW","PKW","PKW","PKW","PKW","SUV", "SUV","Pickup","Pickup", "Motorrad","Motorrad","Motorrad", "Trike", "Quad"]'
  	client_categories='["Behinderung","Frau","Frau","Frau","Frau","Frau","Frau","Frau","Familie","Any","Any","Any","Any","Any","Any","Any","Any","Any","Any","Any"]' 
  	price_factor= '{
     "Familie": 0.8,

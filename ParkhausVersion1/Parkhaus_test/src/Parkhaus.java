@@ -94,6 +94,7 @@ public class Parkhaus extends ParkhausPublisher implements ParkhausIF  {
 		}
 		
 		Car currentcar = new Car(params);
+		
 		currentcar.setPaid(currentcar.getPaid()*Fahrzeugtyp.getInstance(currentcar.getType()).getMultiplicator());
 		
 		stats.aktualisieren(currentcar);
@@ -109,7 +110,6 @@ public class Parkhaus extends ParkhausPublisher implements ParkhausIF  {
 			case "Familie" : belegungVoll[2] = false; break;
 			case "Behinderung" : belegungVoll[3] = false; break;
 		}
-		
 		
 		System.out.println("removed: " + (currentcar.getSpace()-1));
 		cars.remove(index);

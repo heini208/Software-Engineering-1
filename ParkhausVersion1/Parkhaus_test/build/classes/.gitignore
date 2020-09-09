@@ -1,2 +1,15 @@
+/Parkhaus.class
+/ParkhausIF.class
+/ParkhausPublisher.class
 /PieChartBuilder.class
+/SchabloneTest.class
+/Statistiken.class
+/StatistikenIF.class
+/StatsIterator.class
+/TagesEinnahmen.class
+/TageseinnahmenTest.class
+/TestCommand$CommandSumTestHelperClass.class
+/TestCommand.class
 /TypeCountPieChart.class
+/WochenEinnahmen.class
+/WochenEinnahmenTest.class

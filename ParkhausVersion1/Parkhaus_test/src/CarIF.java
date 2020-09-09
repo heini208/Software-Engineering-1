@@ -13,5 +13,6 @@ public interface CarIF {
 	public void setSpace(int space);
 	public int getcarnum();
 	public String getType();
+	public void setType(String type);
 	public String[] carToString();
 }
