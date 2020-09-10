@@ -31,6 +31,7 @@ public class DemoServlet extends HttpServlet {
 		actionMap.put("tavg",new Commandtavg());
 		actionMap.put("chart",new Commandchart());
 		actionMap.put("familiechart",new CommandFamilieChart());
+		actionMap.put("belegtProzentChart",new CommandBelegtProzentChart());
 		
 	}
 

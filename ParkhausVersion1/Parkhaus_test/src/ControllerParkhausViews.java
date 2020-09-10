@@ -8,6 +8,7 @@ public class ControllerParkhausViews implements ControllerIF {
 		new PaidDurationChart(parkhaus);
 		new TagesEinnahmen(parkhaus);
 		new TypeCountPieChart(parkhaus);
+		new BelegtProzentChart(parkhaus);
 	}
 	
 	public void addChart(ChartIF chart) {
