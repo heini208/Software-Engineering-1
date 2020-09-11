@@ -5,7 +5,7 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-class ItTest {
+class IteratorTest {
 
 	@Test
 	void test() {
