@@ -8,10 +8,9 @@ public class Parkhaus extends ParkhausPublisher implements ParkhausIF  {
 	private boolean isFull;
 	private String[][] parkplatzBelegung;
 	private float currentTime;
-	private int numCars;
-	private float price;
 	private Statistiken stats;
-	private boolean[] belegungVoll = new boolean[4];
+	private boolean[] belegungVoll = new boolean[5];
+	private float price;
 	
 
 	
@@ -24,11 +23,13 @@ public class Parkhaus extends ParkhausPublisher implements ParkhausIF  {
 		
 		for(int j = 0; j < parkplatzBelegung[0].length; j++) {
 			parkplatzBelegung[0][j] = "n";
-			if(j < 75)
-				parkplatzBelegung[1][j] = "Normal";
-			else if (j < 83) {
+			if(j < 80)
+				parkplatzBelegung[1][j] = "Any";
+			else if (j < 85) {
+				parkplatzBelegung[1][j] = "Motorrad";
+			} else if (j < 90){
 				parkplatzBelegung[1][j] = "Frau";
-			} else if (j < 91){
+			} else if (j < 95){
 				parkplatzBelegung[1][j] = "Behindert";
 			} else {
 				parkplatzBelegung[1][j] = "Familie";
@@ -39,6 +40,7 @@ public class Parkhaus extends ParkhausPublisher implements ParkhausIF  {
 		belegungVoll[1] = false;
 		belegungVoll[2] = false;
 		belegungVoll[3] = false;
+		belegungVoll[4] = false;
 	}
 	
 	
@@ -137,12 +139,32 @@ public class Parkhaus extends ParkhausPublisher implements ParkhausIF  {
 		// beim implementieren von Parkplatzbelegung
 		// beachten das Auto
 		// nur aufzunehmen wenn ein Parkplatz frei ist!
-		
-		if (params[8].equals("Frau") && (!belegungVoll[1])) {
+		if (params[9].equals("Motorrad") && (!belegungVoll[4])){
+			
+			count = 0;
+			while (parkplatzBelegung[0][space-1].equals("y") || (space < 80 || space > 85)) {
+				System.out.println("Enter While familie");
+				System.out.println("space: " + space);
+				space = r.nextInt(5) + 80;
+				System.out.println("space new: " + space);
+			}
+			
+			parkplatzBelegung[0][space-1] = "y";
+			
+			for (int j = 79; j < 85; j++) {
+				if(parkplatzBelegung[0][j].equals("n"))
+					count++;
+			}
+			System.out.println("count: " + count);
+			if(count == 0) {
+				belegungVoll[4] = true;
+			}
+			
+		} else if (params[8].equals("Frau") && (!belegungVoll[1])) {
 			System.out.println("belegungVoll[1]: " + belegungVoll[1] );
 			
 				count = 0;
-				while(parkplatzBelegung[0][space-1].equals("y")) {
+				while(parkplatzBelegung[0][space-1].equals("y")|| (space > 90 || space < 86)) {
 					System.out.println("Enter While frau");
 					System.out.println("space: " + space);
 					space = r.nextInt(5) + 86;
@@ -166,7 +188,7 @@ public class Parkhaus extends ParkhausPublisher implements ParkhausIF  {
 			System.out.println("belegungVoll[2]: " + belegungVoll[2] );
 			
 				count = 0;
-				while(parkplatzBelegung[0][space-1].equals("y")) {
+				while(parkplatzBelegung[0][space-1].equals("y") || (space > 95 || space < 91)) {
 					System.out.println("Enter While behinderung");
 					System.out.println("space: " + space);
 					space = r.nextInt(5) + 91;
@@ -188,7 +210,7 @@ public class Parkhaus extends ParkhausPublisher implements ParkhausIF  {
 			System.out.println("belegungVoll[3]: " + belegungVoll[3] );
 			
 				count = 0;
-				while (parkplatzBelegung[0][space-1].equals("y")) {
+				while (parkplatzBelegung[0][space-1].equals("y") || (space < 96 || space > 100)) {
 					System.out.println("Enter While familie");
 					System.out.println("space: " + space);
 					space = r.nextInt(5) + 96;
@@ -206,24 +228,23 @@ public class Parkhaus extends ParkhausPublisher implements ParkhausIF  {
 					belegungVoll[3] = true;
 				}
 			
-			
 		} else if (!belegungVoll[0]){
 			 
 				System.out.println("belegungVoll[0]: " + belegungVoll[0] );
-				if (space > 85)
-					space = r.nextInt(85)+1;
+				if (space > 80)
+					space = r.nextInt(80)+1;
 			
 					count = 0;
-					while(parkplatzBelegung[0][space-1].equals("y")) {
+					while(parkplatzBelegung[0][space-1].equals("y") || (space > 80)) {
 						System.out.println("Enter While normal");
 						System.out.println("space: " + space);
-						space = r.nextInt(85)+1;
+						space = r.nextInt(80)+1;
 						System.out.println("space new: " + space);
 					}
 					
 					parkplatzBelegung[0][space-1] = "y";
 					
-					for (int j = 0; j < 85; j++) {
+					for (int j = 0; j < 79; j++) {
 						if(parkplatzBelegung[0][j].equals("n"))
 							count++;
 					}
@@ -268,6 +289,7 @@ public class Parkhaus extends ParkhausPublisher implements ParkhausIF  {
 
 	
 	Predicate<Integer> isNull = (position -> cars.get(position) == null);
+	private int numCars;
 
 	@Override
 	public boolean isFree(int platz) {
