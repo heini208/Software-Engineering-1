@@ -159,7 +159,7 @@ public class Parkhaus extends ParkhausPublisher implements ParkhausIF  {
 						taken = false;
 						continue;
 					}else {
-						
+						isFull = false;	
 					//free Space found
 					space = j;
 					params[7] = "" + space;
