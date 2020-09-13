@@ -5,13 +5,18 @@ public class BelegtProzentChart implements ChartIF{
 	Parkhaus p;
 	List<CarIF> cars;
 	//missing motorrad
-	String[] typ = {"Any","Familie","Behinderung","Frau"};
-	float[] werte = new float[5];
-	String[] finalWerte = new String[5];
+	String[] typ;
+	int[] anzahl;
+	float[] werte;
+	String[] finalWerte;
 	
 	int samples= 0;
 	public BelegtProzentChart(Parkhaus p){
 	this.p = p;
+	anzahl = p.getPAnzahl();
+	typ = p.getPlaetze();
+	werte = new float[typ.length];
+	finalWerte = new String[typ.length];
 	
 	p.addChart(this);
 	this.update();
@@ -22,25 +27,19 @@ public class BelegtProzentChart implements ChartIF{
 		cars = p.getParkhaus();
 		//Parkplatz Art als Variable aus Parkhaus auslesbar machen um sie hier zu verwenden jetzt erstmal hardcodiert (am besten im array dann kann finalWerte mit for schleife belegt werden)
 		for(CarIF c : cars) {
+			for (int i=0;i<anzahl.length; i++) {
+				if (c.getSpace()>anzahl[i] && c.getSpace()<anzahl[i+1]) {
+					werte[i]++;
+				}
+			}
 			
-			if(c.getSpace()<86) {
-				werte[0]++;
-			}
-			else if (c.getSpace()>85 && c.getSpace()<91) {
-				werte[3]++;
-			}
-			else if (c.getSpace()>90 && c.getSpace()< 96){
-				werte[2]++;
-			}
-			else if (c.getSpace()>95) {
-				werte[1]++;
-			}
+			
 			}
 		samples++;
-		finalWerte[0] = String.valueOf((werte[0]/(85*samples))*100);
-		finalWerte[1] = String.valueOf((werte[1]/(5*samples))*100); 
-		finalWerte[2] = String.valueOf((werte[2]/(5*samples))*100);
-		finalWerte[3] = String.valueOf((werte[3]/(5*samples))*100);
+		for(int i= 0; i<finalWerte.length;i++){
+			finalWerte[i] = String.valueOf((werte[i]/((anzahl[i+1]-anzahl[i])*samples))*100);
+		}
+		
 		System.out.println("TestTestTest:   " + finalWerte[0] +"   " +werte[0] + "  " +samples);
 		
 		
