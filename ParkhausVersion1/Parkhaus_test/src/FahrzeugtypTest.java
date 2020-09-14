@@ -10,7 +10,7 @@ class FahrzeugtypTest {
 	CarIF car1 = new Car(params0);
 	CarIF car2 = new Car(params1);
 	CarIF car3 = new Car(params2);
-		
+	
 	@Test
 	void test_carConstructor() {
 

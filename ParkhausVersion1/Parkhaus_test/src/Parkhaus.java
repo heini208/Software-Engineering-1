@@ -6,42 +6,19 @@ public class Parkhaus extends ParkhausPublisher implements ParkhausIF  {
 	
 	private List<CarIF> cars;
 	private boolean isFull;
-	private String[][] parkplatzBelegung;
 	private float currentTime;
 	private Statistiken stats;
-	private boolean[] belegungVoll = new boolean[5];
 	private float price;
 	private String[] plaetze = {"Any","Frau", "Behinderung", "Familie","Motorrad"};
 	private int[] pAnzahl = {0,80,85,90,95,100};
-
+	private boolean[] parkplatzBelegung = new boolean[pAnzahl[pAnzahl.length-1]];
 	
 	
 	//Constructors
 	public Parkhaus() {
 		cars = new ArrayList<>();
 		stats = new Statistiken(this);
-		/*parkplatzBelegung = new String[5][2];
 		
-		for(int j = 0; j < parkplatzBelegung[0].length; j++) {
-			parkplatzBelegung[0][j] = "n";
-			if(j < 80)
-				parkplatzBelegung[1][j] = "Any";
-			else if (j < 85) {
-				parkplatzBelegung[1][j] = "Motorrad";
-			} else if (j < 90){
-				parkplatzBelegung[1][j] = "Frau";
-			} else if (j < 95){
-				parkplatzBelegung[1][j] = "Behindert";
-			} else {
-				parkplatzBelegung[1][j] = "Familie";
-			}
-		}*/
-		
-		belegungVoll[0] = false;
-		belegungVoll[1] = false;
-		belegungVoll[2] = false;
-		belegungVoll[3] = false;
-		belegungVoll[4] = false;
 	}
 	
 	
@@ -118,16 +95,10 @@ public class Parkhaus extends ParkhausPublisher implements ParkhausIF  {
 		//freigeben des Parkplatz in der Belegung
 		//parkplatzBelegung[0][currentcar.getSpace()-1] = "n";
 		
-		//wenn parkplätze voll waren
-		switch (params[8]){
-			case "Normal": belegungVoll[0] = false; break;
-			case "Frau" :belegungVoll[1] = false; break;
-			case "Familie" : belegungVoll[2] = false; break;
-			case "Behinderung" : belegungVoll[3] = false; break;
-		}
-		
+
 		System.out.println("removed: " + (currentcar.getSpace()-1));
 		cars.remove(index);
+		parkplatzBelegung[currentcar.getSpace()-1] = false;
 		System.out.println(Arrays.toString(cars.toArray()));
 		return this;
 	}
@@ -135,20 +106,16 @@ public class Parkhaus extends ParkhausPublisher implements ParkhausIF  {
 	public int enter(String[] params) {
 		int space = 0;
 		int typeClient = 9;
-		boolean taken = false;
+		int x = 0;
+		//boolean taken = false;
 		for (int i = 0;i<plaetze.length;i++ ) {
 			
 			if (params[typeClient].equals(plaetze[i])) {
 				for (int j=pAnzahl[i]+1 ;j<pAnzahl[i+1]+1;j++) {
-					for(CarIF c : cars) {
-						
-						if(c.getSpace()==j) {
-							taken = true;
-						}				
-					}
-					
-					if ( taken== true) {
-						if (j == pAnzahl[i+1]) {
+					System.out.println(x+ " j: " + j + parkplatzBelegung[j-1]);
+					x++;
+					if ( parkplatzBelegung[j-1]) {
+						if (j == pAnzahl[i+1] && j!=pAnzahl[1]) {
 							j =0;
 						}else if (j == pAnzahl[1]) {
 							//Parkhaus Voll
@@ -156,12 +123,13 @@ public class Parkhaus extends ParkhausPublisher implements ParkhausIF  {
 							isFull = true;
 							return 1;
 						}
-						taken = false;
+						//taken = false;
 						continue;
 					}else {
 						isFull = false;	
 					//free Space found
 					space = j;
+					parkplatzBelegung[j-1] =true;
 					params[7] = "" + space;
 					System.out.println("new car");
 					System.out.println("space final: " + space);
