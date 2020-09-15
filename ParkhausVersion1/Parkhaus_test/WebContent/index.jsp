@@ -1,16 +1,18 @@
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
-<head>
- <title>Tomcat Parkhaus</title>
+<header>
+ <h1 style="text-align:center;">Parkhaus Simulation</h1>
+
+ 
  
  <script src='https://ccmjs.github.io/mkaul-components/parkhaus/versions/ccm.parkhaus-9.1.7.js'></script>
  
-</head>
-<body>
+</header>
+<body style="margin-left: 30px;">
  <h1>Tomcat Parkhaus 9.1.7</h1>
  <ccm-parkhaus-9-1-7 
- 	key='{"price_factor":{"Behinderung":"0","Familie":"0"}}'
+ 	
  	server_url="http://localhost:8080/Parkhaus_test/DemoServlet"
  	Max="100"
  	
@@ -34,5 +36,6 @@
  	
  >
  </ccm-parkhaus-9-1-7>
+  <p style="text-align:center;">By Samira, Dennis, Marcel</p>
 </body>
 </html>

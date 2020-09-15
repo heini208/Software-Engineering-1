@@ -25,22 +25,7 @@ class enterTest {
 
 	@Test
 	void test() {
-		cars.add(car1);
-        cars.add(car2);
-        cars.add(car3);
-        
-        Stream<Integer> stream1 = (Stream)  cars.stream()
-						.mapToInt(cars -> cars.getSpace());
-        List<Integer> belegt = stream1.collect(Collectors.toList());
-				Stream<Integer> stream = (Stream) IntStream.rangeClosed(pAnzahl[0]+1, pAnzahl[pAnzahl.length-1]);
-				List<Integer> frei = stream.collect(Collectors.toList());
-				frei.removeAll(belegt);
-				
-				
-       
-       
-       System.out.println(frei.toString());
-		fail("Not yet implemented");
+	
 	}
 
 }

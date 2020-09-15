@@ -112,7 +112,7 @@ public class Parkhaus extends ParkhausPublisher implements ParkhausIF  {
 			
 			if (params[typeClient].equals(plaetze[i])) {
 				for (int j=pAnzahl[i]+1 ;j<pAnzahl[i+1]+1;j++) {
-					System.out.println(x+ " j: " + j + parkplatzBelegung[j-1]);
+					
 					x++;
 					if ( parkplatzBelegung[j-1]) {
 						if (j == pAnzahl[i+1] && j!=pAnzahl[1]) {
