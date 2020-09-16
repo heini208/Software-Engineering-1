@@ -88,9 +88,6 @@ public class Car implements CarIF {
 		type = params[9];
 	}
 	
-	public Car(int space) {
-		this.space = space;
-	}
 
 	public String[] carToString() {
 		String[] carValues = new String[9];
