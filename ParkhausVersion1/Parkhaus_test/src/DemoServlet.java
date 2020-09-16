@@ -30,7 +30,7 @@ public class DemoServlet extends HttpServlet {
 		actionMap.put("count",new Commandcount());
 		actionMap.put("tavg",new Commandtavg());
 		actionMap.put("chart",new Commandchart());
-		actionMap.put("familiechart",new CommandFamilieChart());
+		actionMap.put("ClientCountChart",new CommandFamilieChart());
 		actionMap.put("belegtProzentChart",new CommandBelegtProzentChart());
 		
 	}

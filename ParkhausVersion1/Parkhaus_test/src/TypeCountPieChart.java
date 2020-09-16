@@ -1,4 +1,7 @@
 
+// Ursprüngliches Familie Pie chart
+
+
 public class TypeCountPieChart implements ChartIF {
 	
 	Parkhaus p;
@@ -6,7 +9,7 @@ public class TypeCountPieChart implements ChartIF {
 	int[] values=new int[4];
 	Statistiken stats ;
 	
-	// Frau , Familie , Behinderung , Normal
+	// Frau , Familie , Behinderung , Any , Motorrad
 	
 	public TypeCountPieChart(Parkhaus p) {
 		this.p = p;
@@ -46,6 +49,7 @@ public class TypeCountPieChart implements ChartIF {
 			else if(client.equals("Familie")) {
 				values[3]++;
 			}
+			
 			
 		}
 		

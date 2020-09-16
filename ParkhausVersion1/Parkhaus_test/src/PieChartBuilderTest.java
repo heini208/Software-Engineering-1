@@ -9,7 +9,6 @@ class PieChartBuilderTest {
 	
 //	Erster Test auf Formatierung 
 	
-	
 	@Test
 	void test() {
 		int[] values = {10,2,6,5};

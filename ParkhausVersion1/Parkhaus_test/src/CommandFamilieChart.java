@@ -8,7 +8,7 @@ public class CommandFamilieChart implements CommandIF{
 	@Override
 	public void execute(HttpServletResponse response, DemoServlet servlet) throws Exception {
 		
-		// Frau , Familie , Behindert , Normal
+		// Frau , Familie , Behindert , Any 
 		
 		
 		String ausgabe = "";
