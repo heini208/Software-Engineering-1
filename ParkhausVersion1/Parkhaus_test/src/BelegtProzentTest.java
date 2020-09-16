@@ -46,7 +46,7 @@ class BelegtProzentTest {
 				}
 			chart.setParkhaus(controller.getParkhaus());
 			chart.update();
-			System.out.println(chart.buildChart());
+			
 			String expected = "{\"data\":[{\"x\":[\"Any\",\"Frau\",\"Behinderung\",\"Familie\",\"Motorrad\"],\"name\":\"Percent\",\"y\":[\"66.5625\",\"0.0\",\"0.0\",\"0.0\",\"40.0\"],\"type\":\"bar\"}]}";
 			assertEquals(expected,chart.buildChart());
 	}

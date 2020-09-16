@@ -9,7 +9,7 @@
  <script src='https://ccmjs.github.io/mkaul-components/parkhaus/versions/ccm.parkhaus-9.1.7.js'></script>
  
 </header>
-<body style="margin-left: 30px;">
+<body style="margin-left: 30px;background-color:white;">
  <h1>Tomcat Parkhaus 9.1.7</h1>
  <ccm-parkhaus-9-1-7 
  	
@@ -34,7 +34,7 @@
     
      images='{
      "car": "https://creazilla-store.fra1.digitaloceanspaces.com/cliparts/68966/retro-car-icon-clipart-md.png",
-     "parking_garage": "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTJh_9Wk7eMUnTMcD_n-pDUX8OWM_qNwL46PA&usqp=CAU",
+     "parking_garage": "https://banner2.cleanpng.com/20180421/qze/kisspng-disabled-parking-permit-car-park-sign-disability-car-parking-5adbcef567ba58.5581114815243548054249.jpg",
     "empty": "https://cdn.iconscout.com/icon/free/png-512/road-327-449812.png"
     }'
   
