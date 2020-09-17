@@ -10,10 +10,13 @@ public class Parkhaus extends ParkhausPublisher implements ParkhausIF  {
 	private Statistiken stats;
 	private float price;
 	private String[] plaetze = {"Any","Frau", "Behinderung", "Familie","Motorrad"};
-	private int[] pAnzahl = {0,80,85,90,95,100};
+	private int[] pAnzahl = {0,80,85,90,95,105};
 	private boolean[] parkplatzBelegung = new boolean[pAnzahl[pAnzahl.length-1]];
 	
 	
+	
+
+
 	//Constructors
 	public Parkhaus() {
 		cars = new ArrayList<>();
@@ -37,10 +40,27 @@ public class Parkhaus extends ParkhausPublisher implements ParkhausIF  {
 	
 	
 	//setter getter
+	public boolean[] getParkplatzBelegung() {
+		return parkplatzBelegung;
+	}
+
+
+	public void setParkplatzBelegung(boolean[] parkplatzBelegung) {
+		this.parkplatzBelegung = parkplatzBelegung;
+	}
+	
 	public Statistiken getStats() {
 		return stats;
 	}
 	public boolean isFull() {
+		for(boolean b: parkplatzBelegung ) {
+			if(!b) {
+				isFull= false;
+				return isFull;
+			}
+			
+		}
+		isFull = true;
 		return isFull;
 	}
 
@@ -66,15 +86,34 @@ public class Parkhaus extends ParkhausPublisher implements ParkhausIF  {
 	public int[] getPAnzahl() {
 		return pAnzahl;
 	}
+	@Override
+	public List<CarIF> getParkhaus() {
+		return cars;
+	}
+	public void setParkhaus(List<CarIF> cars) {
+		this.cars = cars;
+	}
+	
+	@Override
+	public int getParked() {
+		int parked = 0;
+		for (int i =0 ; i < cars.size(); i++) {
+				if( cars.get(i) != null ) {
+					parked++;
+				}
+			}
+		return parked;
+		
+	}
 	//set getter end
 	
 
-	
+	//leave und enter
 	public Parkhaus leave(String[] params) throws Exception {
 		if ( getParked() == 0 ) {
 			throw new Exception("Parkhaus_is_Empty");	
 		}
-		int index = 99999;
+		int index = -1;
 		for(CarIF c : cars) {
 			
 			if(c.getcarnum()==Integer.parseInt(params[1])) {
@@ -91,11 +130,6 @@ public class Parkhaus extends ParkhausPublisher implements ParkhausIF  {
 		
 		stats.aktualisieren(currentcar);
 		update();
-		
-		//freigeben des Parkplatz in der Belegung
-		//parkplatzBelegung[0][currentcar.getSpace()-1] = "n";
-		
-
 		System.out.println("removed: " + (currentcar.getSpace()-1));
 		cars.remove(index);
 		parkplatzBelegung[currentcar.getSpace()-1] = false;
@@ -120,13 +154,13 @@ public class Parkhaus extends ParkhausPublisher implements ParkhausIF  {
 						}else if (j == pAnzahl[1]) {
 							//Parkhaus Voll
 							System.out.println("Parkhaus ist voll");
-							isFull = true;
+							
 							return 1;
 						}
 						//taken = false;
 						continue;
 					}else {
-						isFull = false;	
+						
 					//free Space found
 					space = j;
 					parkplatzBelegung[j-1] =true;
@@ -158,35 +192,23 @@ public class Parkhaus extends ParkhausPublisher implements ParkhausIF  {
 		
 	
 	
-	@Override
-	public List<CarIF> getParkhaus() {
-		return cars;
-	}
+	
 	
 
-	@Override
-	public int getParked() {
-		int parked = 0;
-		for (int i =0 ; i < cars.size(); i++) {
-				if( cars.get(i) != null ) {
-					parked++;
-				}
-			}
-		return parked;
-		
-	}
-
 	
+
+	//?? alles mit //* makierte würde ich löschen
 	Predicate<Integer> isNull = (position -> cars.get(position) == null);
 	private int numCars;
 
-	@Override
+	/*@Override
 	public boolean isFree(int platz) {
 		return isNull.test(platz);
-	}
+	}*/
 	
-
-	public int findCar(CarIF car) {
+	//besagt nur welcher parkplatz welches auto belegt macht keinen Sinn,
+	//da unsere autos eine getSpace methode haben
+	/*public int findCar(CarIF car) {
 		Stream<CarIF> stream = cars.stream();
 		int test = 0;
 		
@@ -202,15 +224,16 @@ public class Parkhaus extends ParkhausPublisher implements ParkhausIF  {
 
 		return test;
 	}
-
+*/
 	
 	public Parkhaus clearall() {
 		
-		this.cars=null;
+		this.cars.clear();
 		this.currentTime=0;
 		this.isFull = false;
 		this.numCars = 0;
-		return null;
+		parkplatzBelegung = new boolean[pAnzahl[pAnzahl.length-1]];
+		return this;
 		
 	}
 }

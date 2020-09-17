@@ -14,7 +14,7 @@
  <ccm-parkhaus-9-1-7 
  	
  	server_url="http://localhost:8080/Parkhaus_test/DemoServlet"
- 	Max="100"
+ 	Max="105"
  	
  	open_from= "0"
   	open_to = "24"
