@@ -33,9 +33,9 @@
     "Behinderung": 0.5}'
     
      images='{
-     "car": "https://i.ibb.co/ZLwY21h/car.png",
-     "parking_garage": "https://i.ibb.co/2sqCQYh/Parkhaus-Sign.png",
-    "empty": "https://i.ibb.co/WksVmPV/Parkplatz.png"
+     "car": "https://creazilla-store.fra1.digitaloceanspaces.com/cliparts/68966/retro-car-icon-clipart-md.png",
+     "parking_garage": "https://banner2.cleanpng.com/20180421/qze/kisspng-disabled-parking-permit-car-park-sign-disability-car-parking-5adbcef567ba58.5581114815243548054249.jpg",
+    "empty": "https://cdn.iconscout.com/icon/free/png-512/road-327-449812.png"
     }'
   
  	
