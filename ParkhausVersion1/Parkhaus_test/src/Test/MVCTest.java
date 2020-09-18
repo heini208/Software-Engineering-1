@@ -1,9 +1,10 @@
-package GrundKlassen;
+package Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 
 import Charts.ControllerParkhausViews;
+import GrundKlassen.Car;
 import Interface.CarIF;
 import Interface.ControllerIF;
 
