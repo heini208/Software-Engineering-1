@@ -33,11 +33,11 @@ import interfaceklassen.CommandIF;
 import interfaceklassen.ControllerIF;
 
 @WebServlet("/DemoServlet")
-public class DemoServlet extends HttpServlet {
+public class ParkhausServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private Map<String,CommandIF> actionMap = new HashMap<String,CommandIF>();
 
-	public DemoServlet() {
+	public ParkhausServlet() {
 		actionMap.put("sum",new CommandSum());
 		actionMap.put("avg",new Commandavg());
 		actionMap.put("count",new Commandcount());

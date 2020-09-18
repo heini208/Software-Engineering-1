@@ -3,13 +3,13 @@ import java.io.PrintWriter;
 
 import javax.servlet.http.HttpServletResponse;
 
-import grundklassen.DemoServlet;
+import grundklassen.ParkhausServlet;
 import interfaceklassen.CommandIF;
 
 public class Commandtavg implements CommandIF {
 
 	@Override
-	public void execute(HttpServletResponse response, DemoServlet servlet) throws Exception {
+	public void execute(HttpServletResponse response, ParkhausServlet servlet) throws Exception {
 		
 		Float tavg = servlet.getTAverage();
 		response.setContentType("text/html");

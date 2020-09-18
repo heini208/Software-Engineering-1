@@ -1,7 +1,7 @@
 package command;
 import javax.servlet.http.HttpServletResponse;
 
-import grundklassen.DemoServlet;
+import grundklassen.ParkhausServlet;
 import grundklassen.Parkhaus;
 import interfaceklassen.CommandIF;
 
@@ -25,7 +25,7 @@ public class CommandClearall implements CommandIF{
 		
 	}
 	@Override
-	public void execute(HttpServletResponse response, DemoServlet servlet) throws Exception {
+	public void execute(HttpServletResponse response, ParkhausServlet servlet) throws Exception {
 		// TODO Auto-generated method stub
 		
 	}

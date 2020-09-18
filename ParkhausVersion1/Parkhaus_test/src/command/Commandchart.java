@@ -5,14 +5,14 @@ import java.util.List;
 import javax.servlet.http.HttpServletResponse;
 
 import charts.PaidDurationChart;
-import grundklassen.DemoServlet;
+import grundklassen.ParkhausServlet;
 import interfaceklassen.ChartIF;
 import interfaceklassen.CommandIF;
 
 public class Commandchart implements CommandIF {
 
 	@Override
-	public void execute(HttpServletResponse response, DemoServlet servlet) throws Exception {
+	public void execute(HttpServletResponse response, ParkhausServlet servlet) throws Exception {
 		String ausgabe = "";
 		if ( servlet.getParkhaus()!= null) {
 			List<ChartIF> charts = servlet.getCharts();

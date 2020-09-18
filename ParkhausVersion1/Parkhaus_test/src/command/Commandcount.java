@@ -3,13 +3,13 @@ import java.io.PrintWriter;
 
 import javax.servlet.http.HttpServletResponse;
 
-import grundklassen.DemoServlet;
+import grundklassen.ParkhausServlet;
 import interfaceklassen.CommandIF;
 
 public class Commandcount implements CommandIF {
 
 	@Override
-	public void execute(HttpServletResponse response, DemoServlet servlet) throws Exception {
+	public void execute(HttpServletResponse response, ParkhausServlet servlet) throws Exception {
 		
 		
 		Integer count = servlet.getCount();
