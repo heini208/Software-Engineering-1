@@ -100,13 +100,7 @@ public class Parkhaus extends ParkhausPublisher implements ParkhausIF  {
 	
 	@Override
 	public int getParked() {
-		int parked = 0;
-		for (int i =0 ; i < cars.size(); i++) {
-				if( cars.get(i) != null ) {
-					parked++;
-				}
-			}
-		return parked;
+		return cars.size();
 		
 	}
 	//set getter end

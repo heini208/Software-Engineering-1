@@ -1,6 +1,7 @@
 package test;
 import static org.junit.jupiter.api.Assertions.*;
 
+
 import org.junit.jupiter.api.Test;
 
 import charts.BelegtProzentChart;
@@ -29,7 +30,7 @@ class BelegtProzentTest {
 			}
 		chart.setParkhaus(controller.getParkhaus());
 		chart.update();
-		assertEquals("20.0",chart.getFinalWerte()[4]);
+		assertEquals("10.0",chart.getFinalWerte()[4]);
 		
 		System.out.println(chart.buildChart());
 	}
@@ -41,18 +42,18 @@ class BelegtProzentTest {
 			}
 		chart.setParkhaus(controller.getParkhaus());
 		chart.update();
-			for(int i=0 ; i<4 ; i++) {
+			for(int i=0 ; i<8 ; i++) {
 				controller.enter(params2);
 				}
 			chart.setParkhaus(controller.getParkhaus());
 			chart.update();
-			for(int i=0 ; i<4 ; i++) {
+			for(int i=0 ; i<8 ; i++) {
 				controller.enter(params2);
 				}
 			chart.setParkhaus(controller.getParkhaus());
 			chart.update();
 			
-			String expected = "{\"data\":[{\"x\":[\"Any\",\"Frau\",\"Behinderung\",\"Familie\",\"Motorrad\"],\"name\":\"Percent\",\"y\":[\"66.5625\",\"0.0\",\"0.0\",\"0.0\",\"40.0\"],\"type\":\"bar\"}]}";
+			String expected = "{\"data\":[{\"x\":[\"Any\",\"Frau\",\"Behinderung\",\"Familie\",\"Motorrad\"],\"name\":\"Percent\",\"y\":[\"67.5\",\"0.0\",\"0.0\",\"0.0\",\"42.5\"],\"type\":\"bar\"}]}";
 			assertEquals(expected,chart.buildChart());
 	}
 
