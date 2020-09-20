@@ -1,7 +1,8 @@
 package interfaceklassen;
 
 public interface StatistikenIF {
-	double getSum();
-	double getAvg();
-
+	public double getSum();
+	public String[] toStringArray(int index);
+	public double getAvg(); 
+	public void aktualisieren(CarIF c);
 }

@@ -7,7 +7,7 @@ import java.util.stream.Stream;
 
 import interfaceklassen.CarIF;
 
-public class Statistiken{
+public class Statistiken implements StatistikenIF{
 	Iterator<String> i;
 	Parkhaus parkhaus;
 	private String[] reiter = {"carnum","startTime", "leaveTime","duration",
@@ -59,23 +59,6 @@ public class Statistiken{
 		}
 		return values;
 	}
-	
-	/*
-	public double getSum() {
-		
-			
-		Stream<String[]> stream = stats.stream();
-		double sum =
-				stream .flatMap(list -> Arrays.asList(
-						list[Arrays.asList(stats.get(0)).indexOf("Preis")])
-						.stream())
-				.skip(1)
-				.mapToDouble(list -> Double.parseDouble(list))
-				.reduce(0, Double::sum);
-		
-		return sum;
-		
-	}*/
 	
 	
 	//returns average of all prices
