@@ -15,7 +15,7 @@ public class Statistiken implements StatistikenIF{
 	private String[] reiter = {"carnum","startTime", "leaveTime","duration",
 			"paid","ticket", "space","client","type"
 			};
-	List<String[]> stats = new ArrayList<String[]>();
+	
 	
 	
 	//Constructor
@@ -31,7 +31,7 @@ public class Statistiken implements StatistikenIF{
 	}
 	
 	
-	//getter
+	//getter setter
 	public List<String[]> getStatistik(){
 		return this.stats;
 	}
@@ -39,6 +39,35 @@ public class Statistiken implements StatistikenIF{
 	public void setStatistik(List<String[]> stats) {
 		this.stats = stats;
 	}
+	public Iterator<String> getIterator() {
+		return i;
+	}
+
+
+	public void setIterator(Iterator<String> i) {
+		this.i = i;
+	}
+
+
+	public Parkhaus getParkhaus() {
+		return parkhaus;
+	}
+
+
+	public void setParkhaus(Parkhaus parkhaus) {
+		this.parkhaus = parkhaus;
+	}
+
+
+	public String[] getReiter() {
+		return reiter;
+	}
+
+
+	public void setReiter(String[] reiter) {
+		this.reiter = reiter;
+	}
+	List<String[]> stats = new ArrayList<String[]>();
 	
 	//returns sum of prices
 	public double getSum() {

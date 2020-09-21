@@ -9,10 +9,10 @@ import interfaceklassen.ChartIF;
 
 public class TypeCountPieChart implements ChartIF {
 	
-	Parkhaus p;
-	String[] labels = {"Any","Frau","Behinderung","Familie"};
-	int[] values=new int[4];
-	Statistiken stats ;
+	private Parkhaus p;
+	private String[] labels = {"Any","Frau","Behinderung","Familie"};
+	private int[] values=new int[4];
+	private Statistiken stats ;
 	
 	// Frau , Familie , Behinderung , Any , Motorrad
 	

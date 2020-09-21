@@ -20,7 +20,7 @@ public class Car implements CarIF {
 	private String client;
 	
 	
-	
+	//getter setter
 	public int getcarnum() {
 		return carnum;
 	}
@@ -73,7 +73,8 @@ public class Car implements CarIF {
 	public void setType(String type) {
 		this.type = type;
 	}
-
+	
+ //constructor
 	public Car(String[] params) {
 		if (!params[3].equals("_")) {
 			leaveTime = Long.parseLong(params[2]);
