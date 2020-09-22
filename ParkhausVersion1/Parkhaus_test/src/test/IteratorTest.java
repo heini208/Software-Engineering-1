@@ -1,3 +1,8 @@
+/**
+ * @author 
+ * Test für Iterator
+ */
+
 package test;
 
 

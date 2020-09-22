@@ -1,3 +1,8 @@
+/**
+ * @author 
+ * interface Klasse für Car
+ */
+
 package interfaceklassen;
 public interface CarIF {
 	public double getDuration() ;

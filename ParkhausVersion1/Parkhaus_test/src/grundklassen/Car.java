@@ -1,3 +1,9 @@
+/**
+ * @author 
+ * Car erstellt ein Auto für das Parkhaus
+ * Methode carToString || Formatiert die Werte aus CarValues in einen String
+ */
+
 package grundklassen;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -9,6 +15,7 @@ import interfaceklassen.CarIF;
 
 public class Car implements CarIF {
 	
+	//Klassenvariablen
 	private double duration;
 	private long startTime;
 	private long leaveTime;
@@ -19,6 +26,23 @@ public class Car implements CarIF {
 	private String type;
 	private String client;
 	
+	 //Konstruktor
+		public Car(String[] params) {
+			if (!params[3].equals("_")) {
+				leaveTime = Long.parseLong(params[2]);
+				duration = Double.parseDouble(params[3]);
+				paid = Double.parseDouble(params[4]) ;
+				
+			} else {
+				startTime = Long.parseLong(params[2]);
+			}
+			
+			carnum = Integer.parseInt(params[1]); 
+			ticket = params[5];
+		    space = Integer.parseInt(params[7]);
+			client = params[8];
+			type = params[9];
+		}
 	
 	//getter setter
 	public int getcarnum() {
@@ -74,25 +98,8 @@ public class Car implements CarIF {
 		this.type = type;
 	}
 	
- //constructor
-	public Car(String[] params) {
-		if (!params[3].equals("_")) {
-			leaveTime = Long.parseLong(params[2]);
-			duration = Double.parseDouble(params[3]);
-			paid = Double.parseDouble(params[4]) ;
-			
-		} else {
-			startTime = Long.parseLong(params[2]);
-		}
-		
-		carnum = Integer.parseInt(params[1]); 
-		ticket = params[5];
-	    space = Integer.parseInt(params[7]);
-		client = params[8];
-		type = params[9];
-	}
-	
 
+	//carToString || Formatiert die Werte aus CarValues in einen String
 	public String[] carToString() {
 		String[] carValues = new String[9];
 		carValues[0] = "C"+ getcarnum();

@@ -1,3 +1,8 @@
+/**
+ * @author 
+ * interface Klasse für Controlle
+ */
+
 package interfaceklassen;
 import java.util.List;
 

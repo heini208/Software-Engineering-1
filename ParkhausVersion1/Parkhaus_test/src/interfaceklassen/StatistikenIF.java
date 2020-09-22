@@ -1,3 +1,8 @@
+/**
+ * @author 
+ * interface Klasse für Statistiken
+ */
+
 package interfaceklassen;
 
 public interface StatistikenIF {

@@ -1,3 +1,11 @@
+/**
+ * @author 
+ * TagesEinnahmen Berechnet die einnahmen von einem Tag in einer Liste
+ * Methode spezifizieren || gibt die Werte aus 
+ * Methode formatDate || Formatiert das Datum 
+ * Methode buildChart || Erzeugt ein neues Chart aus den TagesEinnahmen
+ */
+
 package einnahmen;
 
 import java.sql.Date;
@@ -12,26 +20,21 @@ import interfaceklassen.ChartIF;
 
 public class WochenEinnahmen extends EinnahmenProX implements ChartIF {
  
+	//Klassenvariablen
 	SimpleDateFormat sdf = new SimpleDateFormat("YYYY-'W'ww");
 	
-	
-	public List<Double> getEinnahmen(){
-		return einnahmen;
-	}
-	
-	public List<String> getTage(){
-		return tage;
-	}
-	
-	public WochenEinnahmen(Parkhaus p) {
-		this.p = p;
-		//stats = p.getStats();
-		p.addChart(this);
-		this.update();
-	}
+	//Konstruktor
+		public WochenEinnahmen(Parkhaus p) {
+			this.p = p;
+			//stats = p.getStats();
+			p.addChart(this);
+			this.update();
+		}
+		
+
 	
 
-	@Override
+	//buildChart || Erzeugt ein neues Chart aus den WochenEinnahmen
 	public String buildChart() {
 		
 		List<String> einString = einnahmen.stream().map(Object::toString)
@@ -46,14 +49,23 @@ public class WochenEinnahmen extends EinnahmenProX implements ChartIF {
 		
 	}
 
-	@Override
+	//spezifizieren || gibt die Werte aus
 	protected Statistiken spezifizieren() {
 		return p.getStats();
 	}
 	
-	@Override
+	//formatDate || Formatiert das Datum
 	protected String formatDate(String data) {
 		return sdf.format(new Date( Long.parseLong(data)));
 	}
 
+	//Getter Setter
+	public List<Double> getEinnahmen(){
+		return einnahmen;
+	}
+	
+	public List<String> getTage(){
+		return tage;
+	}
+	
 }

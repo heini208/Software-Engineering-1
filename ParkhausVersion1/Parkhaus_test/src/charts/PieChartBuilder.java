@@ -1,3 +1,10 @@
+/**
+ * @author   
+ * PieChartBuilder formatiert die Daten und erzeugt JSON Struktur 
+ * Methode BuildPieChart || Erzeugt JSON Struktur 
+ */
+
+
 package charts;
 import org.json.*;
 

@@ -1,3 +1,8 @@
+/**
+ * @author 
+ * ParkhausServlet erstellt die HTML Strukur für das Parkhaus 
+ */
+
 package grundklassen;
 
 import java.awt.Desktop.Action;
@@ -31,6 +36,8 @@ import command.Commandtavg;
 import interfaceklassen.ChartIF;
 import interfaceklassen.CommandIF;
 import interfaceklassen.ControllerIF;
+
+//Brauchen wir das Servlet noch oder verwenden wir nur das Andere ???
 
 @WebServlet("/DemoServlet")
 public class ParkhausServlet extends HttpServlet {

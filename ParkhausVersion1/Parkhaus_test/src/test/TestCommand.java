@@ -1,3 +1,8 @@
+/**
+ * @author 
+ * Test für Command
+ */
+
 package test;
 import static org.junit.jupiter.api.Assertions.*;
 

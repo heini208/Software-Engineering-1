@@ -1,3 +1,10 @@
+/**
+ * @author 
+ * Der Command Commandcount gibt die anzahl an autos aus und sendet sie an das Servlet
+ * Methode execute || sendet die anzahl an autos an das servlet 
+ * Methode unexecute || Stellt das vorherige anzahl der Autos wieder her
+ */
+
 package command;
 import java.io.PrintWriter;
 
@@ -8,7 +15,7 @@ import interfaceklassen.CommandIF;
 
 public class Commandcount implements CommandIF {
 
-	@Override
+	//execute || sendet die anzahl an autos an das servlet 
 	public void execute(HttpServletResponse response, ParkhausServlet servlet) throws Exception {
 		
 		
@@ -20,7 +27,7 @@ public class Commandcount implements CommandIF {
 		
 	}
 
-	@Override
+	//unexecute || Stellt das vorherige anzahl der Autos wieder her
 	public void unexecute() {
 		// TODO Auto-generated method stub
 		

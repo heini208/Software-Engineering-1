@@ -1,3 +1,9 @@
+/**
+ * @author 
+ * interface Klasse für Parkhaus
+ */
+
+
 package interfaceklassen;
 import java.util.List;
 

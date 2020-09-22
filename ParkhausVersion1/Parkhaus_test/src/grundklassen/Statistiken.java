@@ -1,3 +1,8 @@
+/**
+ * @author 
+ * Statistiken erstellt Statistiken und gibt stats als variable aus 
+ */
+
 package grundklassen;
 import java.util.ArrayList;
 
@@ -10,6 +15,8 @@ import interfaceklassen.CarIF;
 import interfaceklassen.StatistikenIF;
 
 public class Statistiken implements StatistikenIF{
+	
+	//Klassenvariablen
 	Iterator<String> i;
 	Parkhaus parkhaus;
 	private String[] reiter = {"carnum","startTime", "leaveTime","duration",

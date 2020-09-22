@@ -1,9 +1,17 @@
+/**
+ * @author   
+ * BarChartBuilder formatiert die Daten und erzeugt JSON Struktur 
+ * Methode Barcharts || Erzeugt JSON Struktur 
+ */
+
+
+
 package charts;
 import org.json.*;
 
 public class BarChartBuilder {
 
-	//Barcharts
+	//Barcharts || Erzeugt JSON Struktur 
 	public static String BuildBarChart (String[] x , String[][] y , String[] names) {
 
 		JSONObject root = new JSONObject ();

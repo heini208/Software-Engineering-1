@@ -1,3 +1,8 @@
+/**
+ * @author 
+ * StatsIterator simpler Iterator für Statisiken
+ */
+
 package grundklassen;
 import java.util.Arrays;
 import java.util.Iterator;

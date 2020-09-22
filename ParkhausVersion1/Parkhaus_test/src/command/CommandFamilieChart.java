@@ -1,3 +1,10 @@
+/**
+ * @author 
+ * Der Command Commandcount gibt die diagramme aus und sendet sie an das Servlet
+ * Methode execute || sendet die diagramme an das servlet 
+ * Methode unexecute || Stellt die vorherigen diagramme wieder her
+ */
+
 package command;
 import java.io.PrintWriter;
 import java.util.List;
@@ -11,7 +18,7 @@ import interfaceklassen.CommandIF;
 
 public class CommandFamilieChart implements CommandIF{
 
-	@Override
+	//execute || sendet die diagramme an das servlet 
 	public void execute(HttpServletResponse response, ParkhausServlet servlet) throws Exception {
 		
 		// Frau , Familie , Behindert , Any 
@@ -34,11 +41,11 @@ public class CommandFamilieChart implements CommandIF{
 		
 	}
 
-	@Override
+	//unexecute || Stellt die vorherigen diagramme wieder her
 	public void unexecute() {
 		// TODO Auto-generated method stub
 		
 	}
 		
-	}
+}
 

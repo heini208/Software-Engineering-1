@@ -1,3 +1,8 @@
+/**
+ * @author 
+ * interface Klasse für Chart
+ */
+
 package interfaceklassen;
 
 public interface ChartIF {

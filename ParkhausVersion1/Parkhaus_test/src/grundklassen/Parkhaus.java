@@ -1,3 +1,11 @@
+/**
+ * @author 
+ * Parkhaus erstellt ein Parkhaus mit Autos und den Belegungen
+ * Methode clearall || setzt das Parkhaus zurück 
+ * Methode enter || Ein Auto tritt dem Parkhaus bei 
+ * Methode leave || Eine Auto verlässt das Parkhaus 
+ */
+
 package grundklassen;
 import java.util.*;
 import java.util.function.Predicate;
@@ -8,6 +16,7 @@ import interfaceklassen.ParkhausIF;
 
 public class Parkhaus extends ParkhausPublisher implements ParkhausIF  {
 	
+	//Klassenvariablen
 	private List<CarIF> cars;
 	private boolean isFull;
 	private float currentTime;
@@ -18,28 +27,23 @@ public class Parkhaus extends ParkhausPublisher implements ParkhausIF  {
 	private boolean[] parkplatzBelegung = new boolean[pAnzahl[pAnzahl.length-1]];
 	
 	
-	
-
-
-	//Constructors
+	//Konstruktor
 	public Parkhaus() {
 		cars = new ArrayList<>();
 		stats = new Statistiken(this);
 		
 	}
-	
-	
+	//Konstruktor
 	public Parkhaus(float price) {
 		cars = new ArrayList<>();
 		this.price = price;
 		stats = new Statistiken(this);
 	}
+	//Konstruktor
 	public Parkhaus(List<CarIF> cars) {
 		this.cars = cars;
 		stats = new Statistiken(this);
 	}
-
-	//Constructors end
 	
 	
 	
@@ -106,7 +110,7 @@ public class Parkhaus extends ParkhausPublisher implements ParkhausIF  {
 	//set getter end
 	
 
-	//leave und enter
+	//leave || Eine Auto verlässt das Parkhaus 
 	public Parkhaus leave(String[] params) throws Exception {
 		if ( getParked() == 0 ) {
 			throw new Exception("Parkhaus_is_Empty");	
@@ -135,6 +139,7 @@ public class Parkhaus extends ParkhausPublisher implements ParkhausIF  {
 		return this;
 	}
 	
+	//enter || Ein Auto tritt dem Parkhaus bei 
 	public int enter(String[] params) {
 		int space = 0;
 		int typeClient = 9;
@@ -223,7 +228,7 @@ public class Parkhaus extends ParkhausPublisher implements ParkhausIF  {
 		return test;
 	}
 */
-	
+	//clearall || setzt das Parkhaus zurück 
 	public Parkhaus clearall() {
 		
 		this.cars.clear();

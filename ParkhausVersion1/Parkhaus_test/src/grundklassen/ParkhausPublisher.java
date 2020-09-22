@@ -1,3 +1,9 @@
+/**
+ * @author 
+ * ParkhausPublisher gibt die Grundstruktur für das Parkhaus 
+ * Methode
+ */
+
 package grundklassen;
 import java.util.ArrayList;
 import java.util.List;
@@ -6,6 +12,7 @@ import interfaceklassen.ChartIF;
 
 public abstract class ParkhausPublisher {
 
+		//Klassenvariablen
 		private List<ChartIF> chart= new ArrayList<ChartIF>() ;
 		
 		

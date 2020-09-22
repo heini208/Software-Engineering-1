@@ -1,3 +1,9 @@
+/**
+ * @author 
+ * EinnahmenProX Berechnet die einnahmen in einem Gewissen zeitraum in einer Liste
+ * Methode update || Berechnet die Einnahmen von einem gewissen Datum und speichert sie in der liste einnamhnen
+ */
+
 package einnahmen;
 
 import java.util.ArrayList;
@@ -9,6 +15,8 @@ import grundklassen.Statistiken;
 import grundklassen.StatsIterator;
 
 public abstract class EinnahmenProX {
+	
+	//Klassenvariablen
 	protected Parkhaus p;
 	protected List<Double> einnahmen = new ArrayList<Double>();;
 	protected List<String> tage = new ArrayList<String>();
@@ -17,6 +25,8 @@ public abstract class EinnahmenProX {
 	protected int index = 0;
 	private int iterateIndex = 0;
 
+	
+	//update || Berechnet die Einnahmen von einem gewissen Datum und speichert sie in der liste einnamhnen
 	public final void update() {
 		stats = spezifizieren();
 		Iterator<String> si = new StatsIterator(stats,2);

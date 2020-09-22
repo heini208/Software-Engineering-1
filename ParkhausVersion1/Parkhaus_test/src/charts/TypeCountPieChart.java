@@ -1,3 +1,11 @@
+/**
+ *@author 
+ * PaidDurationChart implementiert Chart interface 
+ * Methode update || Sendet die neuen Werte an die Klassenvariable values
+ * Methode buildChart || Erzeugt ein neues Chart aus den geupdateten values 
+ */
+
+
 package charts;
 import grundklassen.Parkhaus;
 import grundklassen.Statistiken;
@@ -9,13 +17,17 @@ import interfaceklassen.ChartIF;
 
 public class TypeCountPieChart implements ChartIF {
 	
+	
+	//Klassenvariable
 	private Parkhaus p;
 	private String[] labels = {"Any","Frau","Behinderung","Familie"};
 	private int[] values=new int[4];
 	private Statistiken stats ;
 	
-	// Frau , Familie , Behinderung , Any , Motorrad
+	// Frau , Familie , Behinderung , Any 
 	
+	
+	//Konstruktor
 	public TypeCountPieChart(Parkhaus p) {
 		this.p = p;
 		stats = p.getStats();
@@ -25,6 +37,7 @@ public class TypeCountPieChart implements ChartIF {
 	
 
 
+	//buildChart || Erzeugt ein neues Chart aus den geupdateten values 
 	@Override
 	public String buildChart() {
 		
@@ -34,6 +47,7 @@ public class TypeCountPieChart implements ChartIF {
 
 
 
+	//update || Sendet die neuen Werte an die Klassenvariable an values
 	@Override
 	public void update() {
 		StatsIterator it = new StatsIterator(stats,7);
@@ -54,27 +68,22 @@ public class TypeCountPieChart implements ChartIF {
 			else if(client.equals("Familie")) {
 				values[3]++;
 			}
-			
-			
 		}
-		
-		
-		
 	}
 
-
+	//Setter Getter
 	public void setParkhaus(Parkhaus p) {
 		this.p = p;
-
 	}
+	
 	public Parkhaus getParkhaus() {
 		return p;
 	}
 	
 	public void setvalues (int[] v) {
 		this.values = v;
-
 	}
+	
 	public int[] getvalues() {
 		return values;
 	}

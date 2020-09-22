@@ -1,3 +1,8 @@
+/**
+ * @author 
+ * interface Klasse für Command
+ */
+
 package interfaceklassen;
 
 import javax.servlet.http.HttpServletResponse;
