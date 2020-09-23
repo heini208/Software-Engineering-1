@@ -8,8 +8,8 @@
 
 package grundklassen;
 import java.util.*;
-import java.util.function.Predicate;
-import java.util.stream.Stream;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 import interfaceklassen.CarIF;
 import interfaceklassen.ParkhausIF;
@@ -24,7 +24,7 @@ public class Parkhaus extends ParkhausPublisher implements ParkhausIF  {
 	private float price;
 	private String[] plaetze = {"Any","Frau", "Behinderung", "Familie","Motorrad"};
 	private int[] pAnzahl = {0,80,85,90,95,105};
-	private boolean[] parkplatzBelegung = new boolean[pAnzahl[pAnzahl.length-1]];
+	
 	
 	
 	//Konstruktor
@@ -48,27 +48,17 @@ public class Parkhaus extends ParkhausPublisher implements ParkhausIF  {
 	
 	
 	//setter getter
-	public boolean[] getParkplatzBelegung() {
-		return parkplatzBelegung;
-	}
-
-
-	public void setParkplatzBelegung(boolean[] parkplatzBelegung) {
-		this.parkplatzBelegung = parkplatzBelegung;
-	}
 	
 	public Statistiken getStats() {
 		return stats;
 	}
 	public boolean isFull() {
-		for(boolean b: parkplatzBelegung ) {
-			if(!b) {
-				isFull= false;
-				return isFull;
-			}
-			
+		System.out.println("TESTETSTEST " + getParked() +"  " + pAnzahl[pAnzahl.length-1]);
+		if (getParked() == pAnzahl[pAnzahl.length-1]) {
+			isFull = true;
+		}else {
+			isFull = false;
 		}
-		isFull = true;
 		return isFull;
 	}
 
@@ -134,108 +124,70 @@ public class Parkhaus extends ParkhausPublisher implements ParkhausIF  {
 		update();
 		System.out.println("removed: " + (currentcar.getSpace()-1));
 		cars.remove(index);
-		parkplatzBelegung[currentcar.getSpace()-1] = false;
 		System.out.println(Arrays.toString(cars.toArray()));
 		return this;
 	}
 	
 	//enter || Ein Auto tritt dem Parkhaus bei 
 	public int enter(String[] params) {
-		int space = 0;
-		int typeClient = 9;
-		int x = 0;
-		//boolean taken = false;
-		for (int i = 0;i<plaetze.length;i++ ) {
-			
-			if (params[typeClient].equals(plaetze[i])) {
-				for (int j=pAnzahl[i]+1 ;j<pAnzahl[i+1]+1;j++) {
-					
-					x++;
-					if ( parkplatzBelegung[j-1]) {
-						if (j == pAnzahl[i+1] && j!=pAnzahl[1]) {
-							j =0;
-						}else if (j == pAnzahl[1]) {
-							//Parkhaus Voll
-							System.out.println("Parkhaus ist voll");
-							
-							return 1;
-						}
-						//taken = false;
-						continue;
-					}else {
-						
-					//free Space found
-					space = j;
-					parkplatzBelegung[j-1] =true;
-					params[7] = "" + space;
-					System.out.println("new car");
-					System.out.println("space final: " + space);
-					cars.add(new Car(params));
-					
-					return space;
-					
-					}
-				}
-			}
-			else if(i==plaetze.length-1) {
-				if ( typeClient== 9) {
-				typeClient = 8;
-				i =-1;
-				}
-				else if ( typeClient==8) {
-					System.out.println("Undefined Type");
-					return 1;
-				}
-			}
-			
-	
-		}
-		return 1;
-	}
+		int typeClient = plaetze.length;
 		
-	
-	
-	
-	
-
-	
-
-	//?? alles mit //* makierte würde ich löschen
-	Predicate<Integer> isNull = (position -> cars.get(position) == null);
-	private int numCars;
-
-	/*@Override
-	public boolean isFree(int platz) {
-		return isNull.test(platz);
-	}*/
-	
-	//besagt nur welcher parkplatz welches auto belegt macht keinen Sinn,
-	//da unsere autos eine getSpace methode haben
-	/*public int findCar(CarIF car) {
-		Stream<CarIF> stream = cars.stream();
-		int test = 0;
-		
-		try {
-			test =  stream.filter(cars -> cars != null)
-					.filter(cars -> cars.equals(car))
-					.mapToInt(cars -> cars.getSpace())
+		// Heraus finden des des Auto/ClientTyps mit priorität auf Autotyp z.B Motorrad
+		int type = IntStream.range(0, typeClient)
+			.filter(i -> plaetze[i].equals(params[9]))
+			.findFirst()
+			.orElse(
+					IntStream.range(0,typeClient)
+					.filter(i -> plaetze[i].equals(params[8]))
 					.findFirst()
-					.getAsInt();
-		} catch (Exception e) {
-			return -1;
+					.orElse(-1));
+			
+		if(type == -1) {
+			//kein auto gefunden mit diesen ClientTyp
+			System.out.println("Car type not found");
+			return 1;	
 		}
-
-		return test;
+			
+			// Besetze Parkplaetze finden
+		List<Integer> taken = cars.stream()
+				.mapToInt(c -> c.getSpace())
+				.boxed()
+				.collect(Collectors.toList());
+			// Freie Parkplaetze finden
+		int space = IntStream.range(1,pAnzahl[pAnzahl.length-1]+1)
+				.filter(p-> !taken.contains(p) )
+				.filter(p-> p > pAnzahl[type] && p<= pAnzahl[type+1])
+				.min()
+					// kein freier Parkplatz gefunden Stream auffüllen
+					// und nach freien Any Parkplatz suchen
+				.orElse(
+						IntStream.range(1,pAnzahl[pAnzahl.length-1]+1)
+						.filter(p-> !taken.contains(p) )
+						.filter(p-> p<=pAnzahl[1] )
+						.min()
+						// kein valider Parkplatz frei
+						.orElse(-1));
+		System.out.println(space);
+		if(space == -1) {
+			System.out.println("no Free Space");
+			return 1;
+		}
+					
+		params[7] = "" + space;
+		System.out.println("new car");
+		System.out.println("space final: " + space);
+		cars.add(new Car(params));			
+		
+		return space;
 	}
-*/
+		
+	
 	//clearall || setzt das Parkhaus zurück 
 	public Parkhaus clearall() {
 		
 		this.cars.clear();
 		this.currentTime=0;
 		this.isFull = false;
-		this.numCars = 0;
-		parkplatzBelegung = new boolean[pAnzahl[pAnzahl.length-1]];
 		return this;
 		
 	}

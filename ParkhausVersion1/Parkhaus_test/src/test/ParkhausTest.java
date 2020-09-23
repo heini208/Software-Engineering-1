@@ -5,9 +5,6 @@
 
 package test;
 import static org.junit.jupiter.api.Assertions.*;
-
-import java.util.List;
-
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -38,14 +35,12 @@ class ParkhausTest {
 		assertEquals(2,p.getParked());
 		assertEquals(96,p.getParkhaus().get(1).getSpace());
 		assertEquals(1,p.getParkhaus().get(0).getSpace());
-		assertEquals(true,p.getParkplatzBelegung()[95]);
 		for (int i=0;i<7;i++) {
 			p.enter(frau1);
 		}
 		assertEquals(9,p.getParked());
 		assertEquals(85,p.getParkhaus().get(6).getSpace());
 		assertEquals(3,p.getParkhaus().get(8).getSpace());
-		assertEquals(false,p.getParkplatzBelegung()[86]);
 		
 		
 	}
@@ -56,10 +51,8 @@ class ParkhausTest {
 		p.enter(params);
 		p.enter(params2);
 		p.enter(frau1);
-		assertEquals(true,p.getParkplatzBelegung()[80]);
 		assertEquals(3,p.getParked());
 		p.leave(frau1);
-		assertEquals(false,p.getParkplatzBelegung()[80]);
 		assertEquals(2,p.getParked());
 		p.enter(frau1);
 		assertEquals(81,p.getParkhaus().get(2).getSpace());
@@ -78,7 +71,6 @@ class ParkhausTest {
 			p.enter(params2);
 			p.enter(behinderung);
 			p.enter(familie);
-			System.out.println(i);
 		}
 		assertEquals(true,p.isFull());
 	}
