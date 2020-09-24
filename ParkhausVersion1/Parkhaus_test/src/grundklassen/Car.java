@@ -27,7 +27,9 @@ public class Car implements CarIF {
 	private String client;
 	private String colour;
 	
-	 //Konstruktor
+	
+
+		//Konstruktor
 		public Car(String[] params) {
 			if (!params[3].equals("_")) {
 				leaveTime = Long.parseLong(params[2]);
@@ -40,9 +42,11 @@ public class Car implements CarIF {
 			
 			carnum = Integer.parseInt(params[1]); 
 			ticket = params[5];
+			colour = params[6];
 		    space = Integer.parseInt(params[7]);
 			client = params[8];
 			type = params[9];
+			
 		}
 	
 	//getter setter
@@ -97,13 +101,20 @@ public class Car implements CarIF {
 	}
 	public void setType(String type) {
 		this.type = type;
+	} 
+	public String getColour() {
+		return colour;
+	}
+
+	public void setColour(String colour) {
+		this.colour = colour;
 	}
 	
 
 	//carToString || Formatiert die Werte aus CarValues in einen String
 	public String[] carToString() {
-		String[] carValues = new String[9];
-		carValues[0] = "C"+ getcarnum();
+		String[] carValues = new String[10];
+		carValues[0] = ""+ getcarnum();
 		carValues[1] = ""+ getStartTime();
 		carValues[2] = ""+ getLeaveTime();
 		carValues[3] = ""+ getDuration()/1000;
@@ -112,6 +123,7 @@ public class Car implements CarIF {
 		carValues[6] = getTicket();
 		carValues[7] = getClient();
 		carValues[8] = getType();
+		carValues[9]  = getColour();
 		return carValues;
 	}
 }

@@ -6,6 +6,9 @@
  */
 
 package charts;
+import java.util.Arrays;
+import java.util.stream.Stream;
+
 import grundklassen.Parkhaus;
 import grundklassen.Statistiken;
 import interfaceklassen.ChartIF;
@@ -40,7 +43,8 @@ public class PaidDurationChart implements ChartIF {
 	//Methode buildChart || Erzeugt ein neues Chart aus den geupdateten Finalwerten 
 	@Override
 	public String buildChart() {
-		String ausgabe = BarChartBuilder.BuildBarChart(stats.toStringArray(0), new String[][] {duration,paid}, new String[] {"duration", "paid"});
+		String[] carNumber =Arrays.stream(stats.toStringArray(0)).map(n -> "Car:"+n ).toArray(String[]::new);
+		String ausgabe = BarChartBuilder.BuildBarChart(carNumber, new String[][] {duration,paid}, new String[] {"duration", "paid"});
 		return ausgabe;
 	}
 

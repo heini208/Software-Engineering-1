@@ -21,7 +21,7 @@ public class Statistiken implements StatistikenIF{
 	private Iterator<String> i;
 	private Parkhaus parkhaus;
 	private String[] reiter = {"carnum","startTime", "leaveTime","duration",
-			"paid","ticket", "space","client","type"
+			"paid","ticket", "space","client","type","colour"
 			};
 	
 	
@@ -30,7 +30,7 @@ public class Statistiken implements StatistikenIF{
 	public Statistiken(Parkhaus parkhaus) {
 		this.parkhaus  = parkhaus;
 		stats.add(reiter);
-		String[] carValues = new String[9];
+		String[] carValues = new String[10];
 		
 		for(CarIF cars : parkhaus.getParkhaus()) {
 			carValues = cars.carToString();

@@ -189,9 +189,10 @@ public class ParkhausServlet extends HttpServlet {
 		String body = getBody( request );
 		System.out.println( body );
 		String[] params = body.split(",");
+		if(params.length>=3) {
 		Long NextDayString = Long.parseLong(params[2])+getNextDay();
 		params[2]=""+NextDayString;
-		System.out.println(params[2]);
+		}
 		String event = params[0];
 		if( event.equals("enter") ){
 			ControllerIF controllerParkhaus = getParkhausController();
