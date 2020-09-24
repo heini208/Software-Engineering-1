@@ -58,7 +58,7 @@ public class ControllerParkhausViews implements ControllerIF {
 		return this.parkhaus.getParkhaus();
 	}
 
-	public Parkhaus getParkhaus() {
+	public Parkhaus getParkhausFromController() {
 		return this.parkhaus;
 	}
 	

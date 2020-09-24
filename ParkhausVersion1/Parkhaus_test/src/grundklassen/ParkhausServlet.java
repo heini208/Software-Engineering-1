@@ -13,6 +13,7 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -32,12 +33,12 @@ import command.CommandSum;
 import command.Commandavg;
 import command.Commandchart;
 import command.Commandcount;
+import command.Commandnextday;
 import command.Commandtavg;
 import interfaceklassen.ChartIF;
 import interfaceklassen.CommandIF;
 import interfaceklassen.ControllerIF;
 
-//Brauchen wir das Servlet noch oder verwenden wir nur das Andere ???
 
 @WebServlet("/DemoServlet")
 public class ParkhausServlet extends HttpServlet {
@@ -49,6 +50,7 @@ public class ParkhausServlet extends HttpServlet {
 		actionMap.put("avg",new Commandavg());
 		actionMap.put("count",new Commandcount());
 		actionMap.put("tavg",new Commandtavg());
+		actionMap.put("nextday",new Commandnextday());
 		actionMap.put("chart",new Commandchart());
 		actionMap.put("ClientCountChart",new CommandFamilieChart());
 		actionMap.put("belegtProzentChart",new CommandBelegtProzentChart());
@@ -82,6 +84,10 @@ public class ParkhausServlet extends HttpServlet {
 	}
 
 	
+	
+	public void setNextDay(long nextday) {
+		getApplication().setAttribute("nextday", nextday );
+	}
 
 
 	public Float getTAverage() {
@@ -90,6 +96,13 @@ public class ParkhausServlet extends HttpServlet {
 		tavg= (Float)application.getAttribute("tavg");
 		if(tavg == null) tavg = 0.0f;
 		return tavg;
+	}
+	public Long getNextDay() {
+		Long nextday  ;
+		ServletContext application = getApplication();
+		nextday= (Long)application.getAttribute("nextday");
+		if(nextday == null) nextday = 0L;
+		return nextday;
 	}
 	protected Float getTimeTotal() {
 		Float tsum;
@@ -100,8 +113,7 @@ public class ParkhausServlet extends HttpServlet {
 	}
 	
 	public List<ChartIF> getCharts(){
-		ServletContext application = getApplication();
-		List<ChartIF> charts = ((ControllerIF) application.getAttribute("controllerParkhausViews")).getParkhaus().getChart();
+		List<ChartIF> charts = getParkhausController().getParkhausFromController().getChart();
 		if (charts == null) {
 			
 			charts = new ArrayList<ChartIF>();
@@ -111,7 +123,7 @@ public class ParkhausServlet extends HttpServlet {
 	}
 
 	// returns Parkhaus saved in ServletContext
-	public ControllerIF getParkhaus(){
+	public ControllerIF getParkhausController(){
 		ServletContext application = getApplication();
 		ControllerIF controllerParkhaus =  (ControllerIF)application.getAttribute("controllerParkhausViews");
 		if(controllerParkhaus == null) {
@@ -151,7 +163,6 @@ public class ParkhausServlet extends HttpServlet {
 
 
 		String[] requestParamString = request.getQueryString().split("=");
-		String command = requestParamString[0];
 		String param = requestParamString[1];
 		
 		
@@ -176,9 +187,12 @@ public class ParkhausServlet extends HttpServlet {
 		String body = getBody( request );
 		System.out.println( body );
 		String[] params = body.split(",");
+		Long NextDayString = Long.parseLong(params[2])+getNextDay();
+		params[2]=""+NextDayString;
+		System.out.println(params[2]);
 		String event = params[0];
 		if( event.equals("enter") ){
-			ControllerIF controllerParkhaus = getParkhaus();
+			ControllerIF controllerParkhaus = getParkhausController();
 			int space = controllerParkhaus.enter(params);
 			//Parkplatz ändern ->
 			response.getOutputStream().println(space);
@@ -187,7 +201,7 @@ public class ParkhausServlet extends HttpServlet {
 
 		if( event.equals("leave") ){
 			
-			ControllerIF controllerParkhaus = getParkhaus();
+			ControllerIF controllerParkhaus = getParkhausController();
 			try {
 				controllerParkhaus.leave(params);
 			} catch (Exception e) {
@@ -199,7 +213,7 @@ public class ParkhausServlet extends HttpServlet {
 			Float avg = getAverage();
 			Float tavg = getTAverage();
 			Float tsum = getTimeTotal();
-
+			
 			Integer count = getCount();
 			count++;
 
@@ -226,6 +240,7 @@ public class ParkhausServlet extends HttpServlet {
 				getApplication().setAttribute("avg", avg );
 				getApplication().setAttribute("tavg", tavg );
 				getApplication().setAttribute("tsum", tsum );
+				
 			}
 			response.setContentType("text/html");
 			PrintWriter out = response.getWriter();

@@ -14,7 +14,7 @@ public interface ControllerIF {
 	public void addChart(ChartIF chart);
 	int enter(String[] params);
 	Parkhaus leave(String[] params) throws Exception;
-	Parkhaus getParkhaus();
+	Parkhaus getParkhausFromController();
 	List<CarIF> getListOfCars();
 	
 }

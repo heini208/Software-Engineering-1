@@ -21,9 +21,8 @@
   	delay = "100"
   	simulation_speed =  "10"
   	license_max = "200"
-    
  	
-    extra_buttons='["sum","avg","tavg","count"]' 
+    extra_buttons='["sum","avg","tavg","count","nextday"]' 
  	extra_charts='["chart","ClientCountChart","belegtProzentChart"]'
  	
  	vehicle_types='["PKW", "PKW","PKW","PKW","PKW","PKW", "PKW","PKW","PKW","PKW","PKW","SUV", "SUV","Pickup","Pickup", "Motorrad","Motorrad","Motorrad", "Trike", "Quad"]'

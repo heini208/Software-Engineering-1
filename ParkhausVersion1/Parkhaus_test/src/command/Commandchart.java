@@ -22,7 +22,7 @@ public class Commandchart implements CommandIF {
 	@Override
 	public void execute(HttpServletResponse response, ParkhausServlet servlet) throws Exception {
 		String ausgabe = "";
-		if ( servlet.getParkhaus()!= null) {
+		if ( servlet.getParkhausController()!= null) {
 			List<ChartIF> charts = servlet.getCharts();
 			for ( ChartIF chart : charts) {
 				if (chart instanceof PaidDurationChart) {

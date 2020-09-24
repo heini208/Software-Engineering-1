@@ -45,10 +45,10 @@ public class BelegtProzentChart implements ChartIF{
 	public void setFinalWerte(String[] finalWerte) {
 		this.finalWerte = finalWerte;
 	}
-	public void setParkhaus(Parkhaus p) {
+	public void setParkhausFromBelegtProzentChart(Parkhaus p) {
 		this.p = p;
 	}
-	public Parkhaus getParkhaus() {
+	public Parkhaus getParkhausFromBelegtProzentChart() {
 		return p;
 	}
 	

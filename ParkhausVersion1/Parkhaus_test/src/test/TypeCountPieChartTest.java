@@ -14,12 +14,16 @@ import charts.TypeCountPieChart;
 import interfaceklassen.ControllerIF;
 
 class TypeCountPieChartTest {
+	
+	
 	ControllerIF controller = new ControllerParkhausViews();
 	
 	String[] params = {"enter","7","1600209640220","_","_","4905a278e4071a2f5d0577c32c1ee688","39c69b","71","Any","PKW","7"};
 	String[] params2 = {"enter","7","1600209640220","_","_","4905a278e4071a2f5d0577c32c1ee688","39c69b","71","Any","Motorrad","7"};
-	// dein Parkhaus bleibt leer du enterst nie.
-	TypeCountPieChart chart = new TypeCountPieChart(controller.getParkhaus());
+	
+	//dein Parkhaus bleibt leer du enterst nie.
+	
+	TypeCountPieChart chart = new TypeCountPieChart(controller.getParkhausFromController());
 	
 	@Test
 	void test() {

@@ -17,8 +17,9 @@ import interfaceklassen.StatistikenIF;
 public class Statistiken implements StatistikenIF{
 	
 	//Klassenvariablen
-	Iterator<String> i;
-	Parkhaus parkhaus;
+	private List<String[]> stats = new ArrayList<String[]>();
+	private Iterator<String> i;
+	private Parkhaus parkhaus;
 	private String[] reiter = {"carnum","startTime", "leaveTime","duration",
 			"paid","ticket", "space","client","type"
 			};
@@ -56,12 +57,12 @@ public class Statistiken implements StatistikenIF{
 	}
 
 
-	public Parkhaus getParkhaus() {
+	public Parkhaus getParkhausFromStats() {
 		return parkhaus;
 	}
 
 
-	public void setParkhaus(Parkhaus parkhaus) {
+	public void setParkhausFromStats(Parkhaus parkhaus) {
 		this.parkhaus = parkhaus;
 	}
 
@@ -74,7 +75,7 @@ public class Statistiken implements StatistikenIF{
 	public void setReiter(String[] reiter) {
 		this.reiter = reiter;
 	}
-	List<String[]> stats = new ArrayList<String[]>();
+	
 	
 	//returns sum of prices
 	public double getSum() {

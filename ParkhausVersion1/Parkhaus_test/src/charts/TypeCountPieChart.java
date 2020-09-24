@@ -72,11 +72,11 @@ public class TypeCountPieChart implements ChartIF {
 	}
 
 	//Setter Getter
-	public void setParkhaus(Parkhaus p) {
+	public void setParkhausFromTypeCountPieChart(Parkhaus p) {
 		this.p = p;
 	}
 	
-	public Parkhaus getParkhaus() {
+	public Parkhaus getParkhausFromTypeCountPieChart() {
 		return p;
 	}
 	

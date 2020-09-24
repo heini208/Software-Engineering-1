@@ -21,7 +21,6 @@ public class Parkhaus extends ParkhausPublisher implements ParkhausIF  {
 	private boolean isFull;
 	private float currentTime;
 	private Statistiken stats;
-	private float price;
 	private String[] plaetze = {"Any","Frau", "Behinderung", "Familie","Motorrad"};
 	private int[] pAnzahl = {0,80,85,90,95,105};
 	
@@ -32,12 +31,6 @@ public class Parkhaus extends ParkhausPublisher implements ParkhausIF  {
 		cars = new ArrayList<>();
 		stats = new Statistiken(this);
 		
-	}
-	//Konstruktor
-	public Parkhaus(float price) {
-		cars = new ArrayList<>();
-		this.price = price;
-		stats = new Statistiken(this);
 	}
 	//Konstruktor
 	public Parkhaus(List<CarIF> cars) {
@@ -115,7 +108,9 @@ public class Parkhaus extends ParkhausPublisher implements ParkhausIF  {
 				
 			}
 		}
-		
+		if(index == -1) {
+			return this;
+		}
 		Car currentcar = new Car(params);
 		
 		currentcar.setPaid(currentcar.getPaid()*Fahrzeugtyp.getInstance(currentcar.getType()).getMultiplicator());

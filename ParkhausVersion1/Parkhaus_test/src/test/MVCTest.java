@@ -21,7 +21,7 @@ class MVCTest {
 		ControllerIF controller = new ControllerParkhausViews();
 		
 		//assertion tests
-		assertNotNull(controller.getParkhaus());
+		assertNotNull(controller.getParkhausFromController());
 		controller.enter(params);
 		assertArrayEquals(auto.carToString(), controller.getListOfCars().get(0).carToString());
 		try {
