@@ -28,6 +28,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import charts.ControllerParkhausViews;
 import command.CommandBelegtProzentChart;
+import command.CommandCarsName;
 import command.CommandFamilieChart;
 import command.CommandSum;
 import command.Commandavg;
@@ -54,6 +55,7 @@ public class ParkhausServlet extends HttpServlet {
 		actionMap.put("chart",new Commandchart());
 		actionMap.put("ClientCountChart",new CommandFamilieChart());
 		actionMap.put("belegtProzentChart",new CommandBelegtProzentChart());
+		actionMap.put("cars&name",new CommandCarsName());
 		
 	}
 

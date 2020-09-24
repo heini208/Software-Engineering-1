@@ -25,6 +25,7 @@ public class Car implements CarIF {
 	private int space;
 	private String type;
 	private String client;
+	private String colour;
 	
 	 //Konstruktor
 		public Car(String[] params) {
